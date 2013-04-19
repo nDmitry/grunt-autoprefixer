@@ -42,10 +42,12 @@ Type: `Array`
 Default value: `['last 2 versions']`
 
 You can specify browsers actual for your project (by default, it’s
-`"last 2 versions"`):
+`'last 2 versions'`):
 
 ```js
-autoprefixer.compile(css, ["last 1 version", "> 1%", "ie 8", "ie 7"]);
+options: {
+  browsers: ['last 1 version', '> 1%', 'ie 8', 'ie 7']
+}
 ```
 
 * `last n versions` is last `n` versions for each browser (for example,
