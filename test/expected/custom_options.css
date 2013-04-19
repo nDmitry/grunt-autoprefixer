@@ -1,0 +1,4 @@
+.test {
+  background: -webkit-linear-gradient(#000, #111);
+  background: linear-gradient(#000, #111)
+}
