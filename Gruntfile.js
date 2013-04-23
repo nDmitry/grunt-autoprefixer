@@ -30,13 +30,9 @@ module.exports = function (grunt) {
 
         // Configuration to be run (and then tested).
         autoprefixer: {
-            default_options: {
-                src: 'test/fixtures/gradient.css',
-                dest: 'tmp/default_options.css'
-            },
             custom_options: {
                 options: {
-                    browsers: ['> 1%', 'ie 8']
+                    browsers: ['opera 12', 'ff 15', 'chrome 25']
                 },
                 src: 'test/fixtures/gradient.css',
                 dest: 'tmp/custom_options.css'
