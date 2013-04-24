@@ -1,0 +1,5 @@
+.editorconfig
+.jshintrc
+.npmignore
+test
+Gruntfile.js
