@@ -1,5 +1,9 @@
+.idea
 .editorconfig
 .jshintrc
 .npmignore
+node_modules
 test
 Gruntfile.js
+npm-debug.log
+tmp
