@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                     // Read file source.
                     return grunt.file.read(filepath);
                 }
-            ).join();
+            ).join('');
 
             // Write the destination file.
             grunt.file.write(f.dest, autoprefixer.compile(src, options.browsers));
