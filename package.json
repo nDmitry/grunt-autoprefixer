@@ -1,7 +1,7 @@
 {
   "name": "grunt-autoprefixer",
   "description": "Parse CSS and add prefixed properties and values by Can I Use database for actual browsers. Based on Autoprefixer.",
-  "version": "0.1.20130424",
+  "version": "0.1.20130516",
   "homepage": "https://github.com/nDmitry/grunt-autoprefixer",
   "author": {
     "name": "Dmitry Nikitenko",
@@ -35,7 +35,7 @@
     "autoprefixer": "0.x"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0",
+    "grunt": "~0.4",
     "autoprefixer": "0.x"
   },
   "keywords": [
