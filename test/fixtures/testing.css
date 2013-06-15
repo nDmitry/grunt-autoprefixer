@@ -40,3 +40,7 @@ body { perspective: calc(50em + 15px); }
 .face:nth-child(4) { transform: rotateY(-90deg) translateZ(8em); }
 .face:nth-child(5) { transform: rotateX(90deg) translateZ(8em); }
 .face:nth-child(6) { transform: rotateX(-90deg) translateZ(8em); }
+
+@page :right {
+    margin: 2in;
+}
