@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
     var autoprefixer = require('autoprefixer');
 
-    grunt.registerMultiTask('autoprefixer', 'Parse CSS and add prefixed properties and values by Can I Use database for actual browsers.', function () {
+    grunt.registerMultiTask('autoprefixer', 'Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website.', function () {
 
         var options = this.options(),
             compiler = autoprefixer(options.browsers);
