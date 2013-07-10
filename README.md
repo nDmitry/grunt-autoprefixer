@@ -1,6 +1,6 @@
 # grunt-autoprefixer [![Build Status](https://travis-ci.org/nDmitry/grunt-autoprefixer.png?branch=master)](https://travis-ci.org/nDmitry/grunt-autoprefixer)
 
-> Parse CSS and add prefixed properties and values by [Can I Use](http://caniuse.com/) database for actual browsers. Based on [Autoprefixer](https://github.com/ai/autoprefixer).
+> Parse CSS and add vendor prefixes to rules using values from the [Can I Use](http://caniuse.com/) website. Based on [Autoprefixer](https://github.com/ai/autoprefixer).
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
