@@ -14,8 +14,8 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('autoprefixer', 'Parse CSS and add prefixed properties and values by Can I Use database for actual browsers.', function () {
 
-        // Merge task-specific and/or target-specific options with these defaults.
-        var options = this.options();
+        var options = this.options(),
+            compiler = autoprefixer(options.browsers);
 
         // Iterate over all specified file groups.
         this.files.forEach(function (f) {
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
             ).join('');
 
             // Write the destination file.
-            grunt.file.write(f.dest, autoprefixer.compile(src, options.browsers));
+            grunt.file.write(f.dest, compiler.compile(src));
 
             // Print a success message.
             grunt.log.writeln('File "' + f.dest + '" created.');
