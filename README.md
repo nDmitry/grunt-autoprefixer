@@ -78,4 +78,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 07/16/2013 - 0.2.0 - Update the task according to Autoprefixer API changes.
 * 04/19/2013 - 0.1.0 - Initial release.
