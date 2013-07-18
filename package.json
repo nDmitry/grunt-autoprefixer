@@ -34,9 +34,11 @@
     "grunt": "~0.4",
     "autoprefixer": "~0.6"
   },
-  "peerDependencies": {
-    "grunt": "~0.4",
+  "dependencies": {
     "autoprefixer": "~0.6"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4"
   },
   "keywords": [
     "gruntplugin",
