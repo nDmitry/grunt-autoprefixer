@@ -1,6 +1,5 @@
 /*
  * grunt-autoprefixer
- * 
  *
  * Copyright (c) 2013 Dmitry Nikitenko
  * Licensed under the MIT license.
@@ -8,7 +7,7 @@
 
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
