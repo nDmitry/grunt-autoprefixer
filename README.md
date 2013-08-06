@@ -63,12 +63,14 @@ options: {
 ```js
 grunt.initConfig({
   autoprefixer: {
-    options: {
-      browsers: ['last 1 version', '> 1%', 'ie 8', 'ie 7']
-    },
-    files: {
-      'dest/styles.css': ['src/something.css', 'src/whatever.css']
-    },
+    dist: {
+      options: {
+        browsers: ['last 1 version', '> 1%', 'ie 8', 'ie 7']
+      },
+      files: {
+        'dest/styles.css': ['src/something.css', 'src/whatever.css']
+      }
+    }
   },
 })
 ```
