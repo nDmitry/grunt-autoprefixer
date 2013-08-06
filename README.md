@@ -1,6 +1,6 @@
 # grunt-autoprefixer [![Build Status](https://travis-ci.org/nDmitry/grunt-autoprefixer.png?branch=master)](https://travis-ci.org/nDmitry/grunt-autoprefixer)
 
-> Parse CSS and add vendor prefixes to rules using values from the [Can I Use](http://caniuse.com/) website. Based on [Autoprefixer](https://github.com/ai/autoprefixer).
+> [Autoprefixer](https://github.com/ai/autoprefixer) parses CSS and adds vendor-prefixed CSS properties using the [Can I Use](http://caniuse.com/) database.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
