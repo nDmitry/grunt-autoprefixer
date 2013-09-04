@@ -12,37 +12,39 @@ module.exports = function(grunt) {
 
     var autoprefixer = require('autoprefixer');
 
-    grunt.registerMultiTask('autoprefixer', 'Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website.', function() {
+    grunt.registerMultiTask(
+        'autoprefixer',
+        'Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website.',
+        function() {
+            var options = this.options(),
+                compiler = autoprefixer(options.browsers);
 
-        var options = this.options(),
-            compiler = autoprefixer(options.browsers);
+            // Iterate over all specified file groups.
+            this.files.forEach(function(f) {
 
-        // Iterate over all specified file groups.
-        this.files.forEach(function(f) {
+                // Concat specified files.
+                var src = f.src.filter(function(filepath) {
 
-            // Concat specified files.
-            var src = f.src.filter(function(filepath) {
+                    // Warn on and remove invalid source files (if nonull was set).
+                    if (!grunt.file.exists(filepath)) {
+                        grunt.log.warn('Source file "' + filepath + '" not found.');
+                        return false;
+                    } else {
+                        return true;
+                    }
 
-                // Warn on and remove invalid source files (if nonull was set).
-                if (!grunt.file.exists(filepath)) {
-                    grunt.log.warn('Source file "' + filepath + '" not found.');
-                    return false;
-                } else {
-                    return true;
-                }
+                }).map(function(filepath) {
 
-            }).map(function(filepath) {
+                    // Read file source.
+                    return grunt.file.read(filepath);
+                }).join('');
 
-                // Read file source.
-                return grunt.file.read(filepath);
-            }).join('');
+                // Write the destination file.
+                grunt.file.write(f.dest, compiler.compile(src));
 
-            // Write the destination file.
-            grunt.file.write(f.dest, compiler.compile(src));
-
-            // Print a success message.
-            grunt.log.writeln('File "' + f.dest + '" created.');
-        });
-    });
-
+                // Print a success message.
+                grunt.log.writeln('File "' + f.dest + '" created.');
+            });
+        }
+    );
 };

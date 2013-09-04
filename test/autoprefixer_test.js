@@ -39,9 +39,9 @@ exports.autoprefixer = {
 
     multiple_files: function(test) {
         var actual = grunt.file.read('tmp/multiple_files/cube.css') +
-            grunt.file.read('tmp/multiple_files/gradient.css');
+                     grunt.file.read('tmp/multiple_files/gradient.css');
         var expected = grunt.file.read('test/expected/multiple_files/cube.css') +
-            grunt.file.read('test/expected/multiple_files/gradient.css');
+                       grunt.file.read('test/expected/multiple_files/gradient.css');
 
         test.strictEqual(actual, expected, 'should prefix all files.');
         test.done();
