@@ -1,0 +1,69 @@
+/**
+ * css 3d animation, how? (SO)
+ * http://stackoverflow.com/q/9812196/1397351
+ * http://dabblet.com/gist/4576285
+ * (c) Ana Tudor
+ */
+
+body {
+    perspective: calc(50em + 15px);
+}
+
+.cube {
+    position: relative;
+    margin: 8em auto 0;
+    padding: 0;
+    width: 16em;
+    height: 16em;
+    list-style: none;
+    transform-style: preserve-3d;
+    animation: ani 8s infinite linear;
+}
+
+@keyframes ani {
+    to {
+        transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
+    }
+}
+
+.face {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    outline: solid 1px;
+    margin: -8em;
+    padding: 1.6em;
+    width: 16em;
+    height: 16em;
+    opacity: .65;
+    background: lightblue;
+}
+
+.face:nth-child(1) {
+    transform: translateZ(8em);
+}
+
+.face:nth-child(2) {
+    transform: rotateY(180deg) translateZ(8em);
+}
+
+.face:nth-child(3) {
+    transform: rotateY(90deg) translateZ(8em);
+}
+
+.face:nth-child(4) {
+    transform: rotateY(-90deg) translateZ(8em);
+}
+
+.face:nth-child(5) {
+    transform: rotateX(90deg) translateZ(8em);
+}
+
+.face:nth-child(6) {
+    transform: rotateX(-90deg) translateZ(8em);
+}
+
+@page :right {
+    margin: 2in;
+}

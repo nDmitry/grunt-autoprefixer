@@ -29,16 +29,23 @@ module.exports = function(grunt) {
 
         // Configuration to be run (and then tested).
         autoprefixer: {
-            custom_options: {
-                options: {
-                    browsers: ['opera 12', 'ff 15', 'chrome 25']
-                },
-                src: 'test/fixtures/gradient.css',
-                dest: 'tmp/custom_options.css'
+            options: {
+                // We need to `freeze` browsers versions for testing purposes.
+                browsers: ['opera 12', 'ff 15', 'chrome 25']
             },
-            multiple: {
+            single_file: {
+                src: 'test/fixtures/gradient.css',
+                dest: 'tmp/single_file.css'
+            },
+            multiple_files: {
+                expand: true,
+                flatten: true,
                 src: 'test/fixtures/*.css',
-                dest: 'tmp/multiple.css'
+                dest: 'tmp/multiple_files/'
+            },
+            concat: {
+                src: 'test/fixtures/*.css',
+                dest: 'tmp/concat.css'
             }
         },
 

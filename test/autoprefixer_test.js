@@ -23,17 +23,36 @@ var grunt = require('grunt');
  */
 
 exports.autoprefixer = {
+
     setUp: function(done) {
         // setup here if necessary
         done();
     },
-    custom_options: function(test) {
-        test.expect(1);
 
-        var actual = grunt.file.read('tmp/custom_options.css');
-        var expected = grunt.file.read('test/expected/custom_options.css');
-        test.strictEqual(actual, expected, 'should describe what the custom option(s) behavior is.');
+    single_file: function(test) {
+        var actual = grunt.file.read('tmp/single_file.css');
+        var expected = grunt.file.read('test/expected/single_file.css');
 
+        test.strictEqual(actual, expected, 'should prefix single file.');
         test.done();
     },
+
+    multiple_files: function(test) {
+        var actual = grunt.file.read('tmp/multiple_files/cube.css') +
+            grunt.file.read('tmp/multiple_files/gradient.css');
+        var expected = grunt.file.read('test/expected/multiple_files/cube.css') +
+            grunt.file.read('test/expected/multiple_files/gradient.css');
+
+        test.strictEqual(actual, expected, 'should prefix all files.');
+        test.done();
+    },
+
+    concat: function(test) {
+        var actual = grunt.file.read('tmp/concat.css');
+        var expected = grunt.file.read('test/expected/concat.css');
+
+        test.strictEqual(actual, expected, 'should concat all files and prefix the one.');
+        test.done();
+    },
+
 };
