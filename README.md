@@ -85,6 +85,12 @@ grunt.initConfig({
     concat: {
       src: 'src/css/*.css', // -> src/css/file1.css, src/css/file2.css
       dest: 'dest/css/concatenated.css' // -> dest/css/concatenated.css
+    },
+
+    // if you specify only `src` param, the destination will be set automatically,
+    // so specified source files will be overwrited
+    no_dest: {
+      src: 'dest/css/file.css' // globbing is also possible here
     }
   }
 
