@@ -34,7 +34,8 @@
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-nodeunit": "~0.2.2"
+    "grunt-contrib-nodeunit": "~0.2.2",
+    "grunt-contrib-copy": "~0.4.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"

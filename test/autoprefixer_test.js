@@ -55,4 +55,22 @@ exports.autoprefixer = {
         test.done();
     },
 
+    single_no_dest: function(test) {
+        var actual = grunt.file.read('tmp/no_dest.css');
+        var expected = grunt.file.read('test/expected/no_dest.css');
+
+        test.strictEqual(actual, expected, 'should prefix a source file if target have no destination specified.');
+        test.done();
+    },
+
+    multiple_no_dest: function(test) {
+        var actual = grunt.file.read('tmp/multiple_no_dest/cube.css') +
+                     grunt.file.read('tmp/multiple_no_dest/gradient.css');
+        var expected = grunt.file.read('test/expected/multiple_no_dest/cube.css') +
+                       grunt.file.read('test/expected/multiple_no_dest/gradient.css');
+
+        test.strictEqual(actual, expected, 'should prefix all source files if target have no destination specified.');
+        test.done();
+    },
+
 };

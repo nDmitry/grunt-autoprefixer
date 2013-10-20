@@ -9,7 +9,6 @@
 
 module.exports = function(grunt) {
 
-    // Project configuration.
     grunt.initConfig({
         jshint: {
             all: [
@@ -22,12 +21,23 @@ module.exports = function(grunt) {
             },
         },
 
-        // Before generating any new files, remove any previously-created files.
         clean: {
             tests: ['tmp'],
         },
 
-        // Configuration to be run (and then tested).
+        copy: {
+            single_no_dest: {
+                src: 'test/fixtures/gradient.css',
+                dest: 'tmp/no_dest.css'
+            },
+            multiple_no_dest: {
+                expand: true,
+                flatten: true,
+                src: 'test/fixtures/*.css',
+                dest: 'tmp/multiple_no_dest/'
+            }
+        },
+
         autoprefixer: {
             options: {
                 // We need to `freeze` browsers versions for testing purposes.
@@ -46,29 +56,29 @@ module.exports = function(grunt) {
             concat: {
                 src: 'test/fixtures/*.css',
                 dest: 'tmp/concat.css'
+            },
+            single_no_dest: {
+                src: 'tmp/no_dest.css'
+            },
+            multiple_no_dest: {
+                src: 'tmp/multiple_no_dest/*.css'
             }
         },
 
-        // Unit tests.
         nodeunit: {
             tests: ['test/*_test.js'],
         },
 
     });
 
-    // Actually load this plugin's task(s).
     grunt.loadTasks('tasks');
 
-    // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-    // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'autoprefixer', 'nodeunit']);
-
-    // By default, lint and run all tests.
+    grunt.registerTask('test', ['clean', 'copy', 'autoprefixer', 'nodeunit']);
     grunt.registerTask('default', ['jshint', 'test']);
 
 };

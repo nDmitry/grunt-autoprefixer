@@ -5,9 +5,9 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function(grunt) {
+
+    'use strict';
 
     var autoprefixer = require('autoprefixer');
 
@@ -15,14 +15,20 @@ module.exports = function(grunt) {
         'autoprefixer',
         'Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website.',
         function() {
-            var options = this.options(),
-                compiler = autoprefixer(options.browsers);
+            var options = this.options();
+
+            /**
+             * @type {Autoprefixer}
+             */
+            var compiler = autoprefixer(options.browsers);
 
             // Iterate over all specified file groups.
             this.files.forEach(function(f) {
 
-                // Concat specified files.
-                var src = f.src.filter(function(filepath) {
+                /**
+                 * @type {string[]}
+                 */
+                var sources = f.src.filter(function(filepath) {
 
                     // Warn on and remove invalid source files (if nonull was set).
                     if (!grunt.file.exists(filepath)) {
@@ -31,18 +37,27 @@ module.exports = function(grunt) {
                     } else {
                         return true;
                     }
+                });
 
-                }).map(function(filepath) {
+                // Write the destination file, or source file if destination isn't specified.
+                if (typeof f.dest !== 'undefined') {
 
-                    // Read file source.
-                    return grunt.file.read(filepath);
-                }).join(grunt.util.linefeed);
+                    // Concat specified files.
+                    var css = sources.map(function(filepath) {
+                        return grunt.file.read(filepath);
+                    }).join(grunt.util.linefeed);
 
-                // Write the destination file.
-                grunt.file.write(f.dest, compiler.compile(src));
+                    grunt.file.write(f.dest, compiler.compile(css));
+                    grunt.log.writeln('Prefixed file "' + f.dest + '" created.');
 
-                // Print a success message.
-                grunt.log.writeln('File "' + f.dest + '" created.');
+                } else {
+
+                    sources.forEach(function(filepath) {
+                        grunt.file.write(filepath, compiler.compile(grunt.file.read(filepath)));
+                        grunt.log.writeln('File "' + filepath + '" prefixed.');
+                    });
+                }
+
             });
         }
     );
