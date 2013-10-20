@@ -5,9 +5,11 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function(grunt) {
+
+    'use strict';
+
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
         jshint: {
@@ -72,11 +74,6 @@ module.exports = function(grunt) {
     });
 
     grunt.loadTasks('tasks');
-
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
     grunt.registerTask('test', ['clean', 'copy', 'autoprefixer', 'nodeunit']);
     grunt.registerTask('default', ['jshint', 'test']);
