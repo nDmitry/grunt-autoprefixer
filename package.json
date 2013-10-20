@@ -28,13 +28,13 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "autoprefixer": "~0.8.20131009"
+    "autoprefixer": "~0.8.20131020"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-nodeunit": "~0.2.1"
+    "grunt-contrib-nodeunit": "~0.2.2"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
