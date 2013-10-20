@@ -1,7 +1,6 @@
 /*
  * grunt-autoprefixer
  *
- *
  * Copyright (c) 2013 Dmitry Nikitenko
  * Licensed under the MIT license.
  */
@@ -37,7 +36,7 @@ module.exports = function(grunt) {
 
                     // Read file source.
                     return grunt.file.read(filepath);
-                }).join('');
+                }).join(grunt.util.linefeed);
 
                 // Write the destination file.
                 grunt.file.write(f.dest, compiler.compile(src));
