@@ -13,7 +13,7 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install grunt-autoprefixer --save-dev
 ```
 
-One the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-autoprefixer');
@@ -51,9 +51,9 @@ options: {
 }
 ```
 
-[See more](https://github.com/ai/autoprefixer#browsers) in Autoprefixer's README.md.
+[View more](https://github.com/ai/autoprefixer#browsers).
 
-### Usage Example
+### Usage Examples
 
 ```js
 grunt.initConfig({
@@ -81,14 +81,14 @@ grunt.initConfig({
       dest: 'dest/css/' // -> dest/css/file1.css, dest/css/file2.css
     },
 
-    // prefix all specified files and concat them into the one file
+    // prefix all specified files and concat them into the one
     concat: {
       src: 'src/css/*.css', // -> src/css/file1.css, src/css/file2.css
       dest: 'dest/css/concatenated.css' // -> dest/css/concatenated.css
     },
 
     // if you specify only `src` param, the destination will be set automatically,
-    // so specified source files will be overwrited
+    // so specified source files will be overwritten
     no_dest: {
       src: 'dest/css/file.css' // globbing is also possible here
     }
