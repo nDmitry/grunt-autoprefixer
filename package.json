@@ -1,7 +1,7 @@
 {
   "name": "grunt-autoprefixer",
   "description": "Parse CSS and add vendor-prefixed CSS properties using the Can I Use database. Based on Autoprefixer.",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "bin": {
       "autoprefixer": "./node_modules/autoprefixer/bin/autoprefixer"
   },
@@ -32,7 +32,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "autoprefixer": "~0.8.20131020"
+    "autoprefixer": "~0.8.20131209"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
