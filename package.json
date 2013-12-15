@@ -32,19 +32,19 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "autoprefixer": "~0.8.20131209",
+    "autoprefixer": "~0.8.20131213",
     "diff": "~1.0.7"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.7.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-nodeunit": "~0.2.2",
     "grunt-contrib-copy": "~0.4.1",
     "load-grunt-tasks": "~0.2.0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.2"
   },
   "keywords": [
     "gruntplugin",
