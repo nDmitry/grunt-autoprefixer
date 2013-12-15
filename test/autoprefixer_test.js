@@ -73,4 +73,24 @@ exports.autoprefixer = {
         test.done();
     },
 
+    diff: function(test) {
+        var actual = grunt.file.read('tmp/diff.css') +
+                     grunt.file.read('tmp/diff.css.patch');
+        var expected = grunt.file.read('test/expected/diff.css') +
+                       grunt.file.read('test/expected/diff.css.patch');
+
+        test.strictEqual(actual, expected, 'should create patch diff for prefixed file.');
+        test.done();
+    },
+
+    diff_path: function(test) {
+        var actual = grunt.file.read('tmp/diff_path.css') +
+                     grunt.file.read('tmp/diff_path.css.patch');
+        var expected = grunt.file.read('test/expected/diff_path.css') +
+                       grunt.file.read('test/expected/diff_path.css.patch');
+
+        test.strictEqual(actual, expected, 'should create patch diff for prefixed file and save it to custom path.');
+        test.done();
+    }
+
 };

@@ -53,6 +53,19 @@ options: {
 
 [View more](https://github.com/ai/autoprefixer#browsers).
 
+#### options.diff
+Type: `Boolean|String`
+Default value: `false`
+
+Set it to `true` if you want to get an output patch file:
+
+```js
+options: {
+  diff: true // or 'custom/path/to/file.css.patch'
+}
+```
+Also you can specify a path where to save this file. More examples in [Gruntfile](https://github.com/nDmitry/grunt-autoprefixer/blob/master/Gruntfile.js).
+
 ### Usage Examples
 
 ```js

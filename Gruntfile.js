@@ -64,6 +64,20 @@ module.exports = function(grunt) {
             },
             multiple_no_dest: {
                 src: 'tmp/multiple_no_dest/*.css'
+            },
+            diff: {
+                options: {
+                    diff: true
+                },
+                src: 'test/fixtures/gradient.css',
+                dest: 'tmp/diff.css'
+            },
+            diff_path: {
+                options: {
+                    diff: 'tmp/diff_path.css.patch'
+                },
+                src: 'test/fixtures/gradient.css',
+                dest: 'tmp/diff_path.css'
             }
         },
 

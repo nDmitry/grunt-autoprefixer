@@ -10,12 +10,15 @@ module.exports = function(grunt) {
     'use strict';
 
     var autoprefixer = require('autoprefixer');
+    var diff = require('diff');
 
     grunt.registerMultiTask(
         'autoprefixer',
         'Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website.',
         function() {
-            var options = this.options();
+            var options = this.options({
+                diff: false
+            });
 
             /**
              * @type {Autoprefixer}
@@ -39,21 +42,32 @@ module.exports = function(grunt) {
                     }
                 });
 
+                function write(path, original, prefixed) {
+                    grunt.file.write(path, prefixed);
+
+                    if (options.diff) {
+                        var diffPath = (typeof options.diff === 'string') ? options.diff : path + '.patch';
+                        grunt.file.write(diffPath, diff.createPatch(path, original, prefixed));
+                    }
+                }
+
                 // Write the destination file, or source file if destination isn't specified.
                 if (typeof f.dest !== 'undefined') {
 
                     // Concat specified files.
-                    var css = sources.map(function(filepath) {
+                    var original = sources.map(function(filepath) {
                         return grunt.file.read(filepath);
                     }).join(grunt.util.linefeed);
 
-                    grunt.file.write(f.dest, compiler.compile(css));
+                    write(f.dest, original, compiler.compile(original));
                     grunt.log.writeln('Prefixed file "' + f.dest + '" created.');
 
                 } else {
 
                     sources.forEach(function(filepath) {
-                        grunt.file.write(filepath, compiler.compile(grunt.file.read(filepath)));
+                        var original = grunt.file.read(filepath);
+
+                        write(filepath, original, compiler.compile(original));
                         grunt.log.writeln('File "' + filepath + '" prefixed.');
                     });
                 }
