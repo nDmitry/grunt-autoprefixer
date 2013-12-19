@@ -1,6 +1,6 @@
 .test {
-  background: -webkit-linear-gradient(#000, #111);
-  background: -moz-linear-gradient(#000, #111);
-  background: -o-linear-gradient(#000, #111);
-  background: linear-gradient(#000, #111);
+    background: -webkit-linear-gradient(#000, #111);
+    background: -moz-linear-gradient(#000, #111);
+    background: -o-linear-gradient(#000, #111);
+    background: linear-gradient(#000, #111);
 }
