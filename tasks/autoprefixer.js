@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                         return grunt.file.read(filepath);
                     }).join(grunt.util.linefeed);
 
-                    write(f.dest, original, compiler.compile(original));
+                    write(f.dest, original, compiler.process(original).css);
                     grunt.log.writeln('Prefixed file "' + f.dest + '" created.');
 
                 } else {
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
                     sources.forEach(function(filepath) {
                         var original = grunt.file.read(filepath);
 
-                        write(filepath, original, compiler.compile(original));
+                        write(filepath, original, compiler.process(original).css);
                         grunt.log.writeln('File "' + filepath + '" prefixed.');
                     });
                 }
