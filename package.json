@@ -28,7 +28,6 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "postinstall": "",
     "test": "grunt test"
   },
   "dependencies": {
