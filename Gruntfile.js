@@ -55,10 +55,6 @@ module.exports = function(grunt) {
                 src: 'test/fixtures/*.css',
                 dest: 'tmp/multiple_files/'
             },
-            concat: {
-                src: 'test/fixtures/*.css',
-                dest: 'tmp/concat.css'
-            },
             single_no_dest: {
                 src: 'tmp/no_dest.css'
             },
@@ -78,6 +74,27 @@ module.exports = function(grunt) {
                 },
                 src: 'test/fixtures/gradient.css',
                 dest: 'tmp/diff_path.css'
+            },
+            sm: {
+                options: {
+                    map: true
+                },
+                src: 'test/fixtures/sm.css',
+                dest: 'tmp/sm.css'
+            },
+            sm_update: {
+                options: {
+                    map: true
+                },
+                src: 'test/fixtures/sm_update.css',
+                dest: 'tmp/sm_update.css'
+            },
+            sm_update_by_path: {
+                options: {
+                    map: 'test/fixtures/sm_update_by_path.css.map'
+                },
+                src: 'test/fixtures/sm_update_by_path.css',
+                dest: 'tmp/sm_update_by_path.css'
             }
         },
 

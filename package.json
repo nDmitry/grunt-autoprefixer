@@ -31,7 +31,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "autoprefixer": "ai/autoprefixer#v1.0",
+    "autoprefixer": "~1.0.20131222",
     "diff": "~1.0.7"
   },
   "devDependencies": {

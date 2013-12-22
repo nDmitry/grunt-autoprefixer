@@ -47,14 +47,6 @@ exports.autoprefixer = {
         test.done();
     },
 
-    concat: function(test) {
-        var actual = grunt.file.read('tmp/concat.css');
-        var expected = grunt.file.read('test/expected/concat.css');
-
-        test.strictEqual(actual, expected, 'should concat all files and prefix the one.');
-        test.done();
-    },
-
     single_no_dest: function(test) {
         var actual = grunt.file.read('tmp/no_dest.css');
         var expected = grunt.file.read('test/expected/no_dest.css');
@@ -90,6 +82,36 @@ exports.autoprefixer = {
                        grunt.file.read('test/expected/diff_path.css.patch');
 
         test.strictEqual(actual, expected, 'should create patch diff for prefixed file and save it to custom path.');
+        test.done();
+    },
+
+    sm: function(test) {
+        var actual = grunt.file.read('tmp/sm.css') +
+                     grunt.file.read('tmp/sm.css.map');
+        var expected = grunt.file.read('test/expected/sm.css') +
+                       grunt.file.read('test/expected/sm.css.map');
+
+        test.strictEqual(actual, expected, 'should generate new sourcemap.');
+        test.done();
+    },
+
+    sm_update: function(test) {
+        var actual = grunt.file.read('tmp/sm_update.css') +
+                     grunt.file.read('tmp/sm_update.css.map');
+        var expected = grunt.file.read('test/expected/sm_update.css') +
+                       grunt.file.read('test/expected/sm_update.css.map');
+
+        test.strictEqual(actual, expected, 'should take sourcemap at specified path and update it.');
+        test.done();
+    },
+
+    sm_update_by_path: function(test) {
+        var actual = grunt.file.read('tmp/sm_update_by_path.css') +
+                     grunt.file.read('tmp/sm_update_by_path.css.map');
+        var expected = grunt.file.read('test/expected/sm_update_by_path.css') +
+                       grunt.file.read('test/expected/sm_update_by_path.css.map');
+
+        test.strictEqual(actual, expected, 'should take sourcemap at specified path and update it.');
         test.done();
     }
 
