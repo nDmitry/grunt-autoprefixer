@@ -1,7 +1,6 @@
 {
-  "version": 3,
-  "file": "sm_update.scss",
-  "sources": ["sm_update.scss"],
-  "names": [],
-  "mappings": "AAAA;EACE,YAAY;;AAGd;EACE,YAAY"
+"version": 3,
+"mappings": "AAAA,IAAK;EACH,UAAU,EAAE,+BAA2B;;AAGzC,IAAK;EACH,UAAU,EAAE,iCAA2B",
+"sources": ["sm_update.scss"],
+"file": "sm_update.css"
 }

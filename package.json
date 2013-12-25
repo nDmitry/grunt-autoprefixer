@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "autoprefixer": "~1.0.20131222",
-    "diff": "~1.0.7"
+    "diff": "~1.0.8"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
@@ -40,6 +40,7 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-nodeunit": "~0.2.2",
     "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-sass": "~0.6.0",
     "load-grunt-tasks": "~0.2.1"
   },
   "peerDependencies": {

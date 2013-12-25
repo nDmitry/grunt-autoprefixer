@@ -23,6 +23,23 @@ module.exports = function(grunt) {
             },
         },
 
+        sass: {
+            dist: {
+                files: {
+                    'test/fixtures/sm.css': 'test/fixtures/sm.scss'
+                }
+            },
+            maps: {
+                options: {
+                    sourcemap: true
+                },
+                files: {
+                    'test/fixtures/sm_update.css': 'test/fixtures/sm_update.scss',
+                    'test/fixtures/sm_update_by_path.css': 'test/fixtures/sm_update_by_path.scss'
+                }
+            }
+        },
+
         clean: {
             tests: ['tmp'],
         },
@@ -106,7 +123,7 @@ module.exports = function(grunt) {
 
     grunt.loadTasks('tasks');
 
-    grunt.registerTask('test', ['clean', 'copy', 'autoprefixer', 'nodeunit']);
+    grunt.registerTask('test', ['sass', 'clean', 'copy', 'autoprefixer', 'nodeunit']);
     grunt.registerTask('default', ['jshint', 'test']);
 
 };

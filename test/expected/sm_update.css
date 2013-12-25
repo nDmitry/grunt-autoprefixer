@@ -1,13 +1,13 @@
 .bg1 {
-  background: -webkit-linear-gradient(#000, #111);
-  background: -moz-linear-gradient(#000, #111);
-  background: -o-linear-gradient(#000, #111);
-  background: linear-gradient(#000, #111); }
+  background: -webkit-linear-gradient(black, #111111);
+  background: -moz-linear-gradient(black, #111111);
+  background: -o-linear-gradient(black, #111111);
+  background: linear-gradient(black, #111111); }
 
 .bg2 {
-  background: -webkit-linear-gradient(#111, #222);
-  background: -moz-linear-gradient(#111, #222);
-  background: -o-linear-gradient(#111, #222);
-  background: linear-gradient(#111, #222); }
+  background: -webkit-linear-gradient(#111111, #222222);
+  background: -moz-linear-gradient(#111111, #222222);
+  background: -o-linear-gradient(#111111, #222222);
+  background: linear-gradient(#111111, #222222); }
 
 /*# sourceMappingURL=sm_update.css.map */
