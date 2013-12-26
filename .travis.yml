@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "0.8"
   - "0.10"
-install: ruby
 before_script:
+  - gem update --system
   - gem install sass --pre
   - npm install -g grunt-cli
