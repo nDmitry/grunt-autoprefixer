@@ -1,1 +1,1 @@
-{"version":3,"file":"tmp/sm_update_by_path.css","sources":["test/fixtures/sm_update_by_path.scss"],"names":[],"mappings":"AAAA;EACE,qDAA4C;EAA5C,kDAA4C;EAA5C,gDAA4C;EAA5C,6CAA4C,EAAE;;AAEhD;EACE,uDAA8C;EAA9C,oDAA8C;EAA9C,kDAA8C;EAA9C,+CAA8C,EAAE"}
+{"version":3,"file":"sm_update_by_path.css","sources":["../test/fixtures/sm_update_by_path.scss"],"names":[],"mappings":"AAAA;EACE,qDAAuC;EAAvC,kDAAuC;EAAvC,gDAAuC;EAAvC,6CAAuC,EAAA;;AAGzC;EACE,uDAAuC;EAAvC,oDAAuC;EAAvC,kDAAuC;EAAvC,+CAAuC,EAAA"}

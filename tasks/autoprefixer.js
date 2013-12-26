@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 
     'use strict';
 
+    var path = require('path');
     var autoprefixer = require('autoprefixer');
     var diff = require('diff');
 
@@ -43,17 +44,54 @@ module.exports = function(grunt) {
                     }
                 });
 
-                function process(original, from, to) {
+                function updateSources(sources, to) {
+                    sources.forEach(function(source, index) {
+
+                        // Set the correct path to a source file
+                        sources[index] = path.relative(path.dirname(to), source);
+                    });
+
+                    return sources;
+                }
+
+                function compile(original, from, to) {
                     var result;
 
                     if (options.map) {
                         var mapPath = (options.map === true) ? from + '.map' : options.map;
+
+                        // source-map lib works incorrectly if an input file is in subdirectory
+                        // so we must cwd to subdirectry and make all paths relative to it
+                        // https://github.com/ai/postcss/issues/13
+                        process.chdir(path.dirname(from));
+                        mapPath = path.relative(path.dirname(from), mapPath);
+                        to = path.relative(path.dirname(from), to);
+                        from = path.basename(from);
 
                         result = processor.process(original, {
                             map: (grunt.file.exists(mapPath)) ? grunt.file.read(mapPath) : true,
                             from: from,
                             to: to
                         });
+
+                        var map = JSON.parse(result.map);
+
+                        // Set the correct name of the generated code
+                        map.file = path.basename(to);
+
+                        if (grunt.file.exists(mapPath)) {
+                            map.sources = updateSources(JSON.parse(grunt.file.read(mapPath)).sources, to);
+                        } else {
+                            updateSources(map.sources, to);
+
+                            // PostCSS doesn't add the annotation yet
+                            result.css = result.css.concat(
+                                grunt.util.linefeed,
+                                '/*# sourceMappingURL=' + path.basename(to) + '.map */'
+                            );
+                        }
+
+                        result.map = JSON.stringify(map);
 
                         grunt.file.write(to + '.map', result.map);
                     } else {
@@ -70,8 +108,12 @@ module.exports = function(grunt) {
 
                 sources.forEach(function(filepath) {
                     var dest = f.dest || filepath;
+                    var cwd = process.cwd();
 
-                    process(grunt.file.read(filepath), filepath, dest);
+                    compile(grunt.file.read(filepath), filepath, dest);
+
+                    // Restore the default cwd
+                    process.chdir(cwd);
                     grunt.log.writeln('File "' + dest + '" prefixed.');
                 });
             });
