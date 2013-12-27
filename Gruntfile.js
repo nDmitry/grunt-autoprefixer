@@ -108,7 +108,7 @@ module.exports = function(grunt) {
             },
             sm_update_by_path: {
                 options: {
-                    map: 'test/fixtures/sm_update_by_path.css.map'
+                    map: 'test/fixtures/'
                 },
                 src: 'test/fixtures/sm_update_by_path.css',
                 dest: 'tmp/sm_update_by_path.css'

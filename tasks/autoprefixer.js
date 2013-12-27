@@ -58,7 +58,13 @@ module.exports = function(grunt) {
                     var result;
 
                     if (options.map) {
-                        var mapPath = (options.map === true) ? from + '.map' : options.map;
+                        var mapPath;
+
+                        if (options.map === true) {
+                            mapPath = from + '.map';
+                        } else {
+                            mapPath = options.map + path.basename(from) + '.map';
+                        }
 
                         // source-map lib works incorrectly if an input file is in subdirectory
                         // so we must cwd to subdirectry and make all paths relative to it
