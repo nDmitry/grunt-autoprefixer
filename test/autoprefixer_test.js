@@ -113,6 +113,16 @@ exports.autoprefixer = {
 
         test.strictEqual(actual, expected, 'should take sourcemap at specified path and update it.');
         test.done();
-    }
+    },
+
+    sm_wo_file: function(test) {
+        var actual = grunt.file.read('tmp/sm_wo_file.css') +
+                     grunt.file.read('tmp/sm_wo_file.css.map');
+        var expected = grunt.file.read('test/expected/sm_wo_file.css') +
+                       grunt.file.read('test/expected/sm_wo_file.css.map');
+
+        test.strictEqual(actual, expected, 'should add the file property to an updated source map.');
+        test.done();
+    },
 
 };
