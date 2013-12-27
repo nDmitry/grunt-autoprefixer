@@ -44,7 +44,24 @@ module.exports = function(grunt) {
                     }
                 });
 
-                function updateSources(sources, to) {
+                /**
+                 * @param {string} map
+                 * @param {string} fileValue
+                 * @returns {string}
+                 */
+                function fixFile(map, filePath) {
+                    map = JSON.parse(map);
+                    map.file = path.basename(filePath);
+
+                    return JSON.stringify(map);
+                }
+
+                /**
+                 * @param {array} sources
+                 * @param {string} to
+                 * @returns {array}
+                 */
+                function fixSources(sources, to) {
                     sources.forEach(function(source, index) {
 
                         // Set the correct path to a source file
@@ -52,6 +69,19 @@ module.exports = function(grunt) {
                     });
 
                     return sources;
+                }
+
+                /**
+                 * @param {string} mapPath
+                 * @param {string} from
+                 */
+                function getMapParam(mapPath, from) {
+
+                    if (grunt.file.exists(mapPath)) {
+                        return fixFile(grunt.file.read(mapPath), from);
+                    } else {
+                        return true;
+                    }
                 }
 
                 function compile(original, from, to) {
@@ -75,20 +105,17 @@ module.exports = function(grunt) {
                         from = path.basename(from);
 
                         result = processor.process(original, {
-                            map: (grunt.file.exists(mapPath)) ? grunt.file.read(mapPath) : true,
+                            map: getMapParam(mapPath, from),
                             from: from,
                             to: to
                         });
 
-                        var map = JSON.parse(result.map);
-
-                        // Set the correct name of the generated code
-                        map.file = path.basename(to);
+                        var map = JSON.parse(fixFile(result.map, to));
 
                         if (grunt.file.exists(mapPath)) {
-                            map.sources = updateSources(JSON.parse(grunt.file.read(mapPath)).sources, to);
+                            map.sources = fixSources(JSON.parse(grunt.file.read(mapPath)).sources, to);
                         } else {
-                            updateSources(map.sources, to);
+                            fixSources(map.sources, to);
 
                             // PostCSS doesn't add the annotation yet
                             result.css = result.css.concat(
