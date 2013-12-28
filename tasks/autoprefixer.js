@@ -76,13 +76,21 @@ module.exports = function(grunt) {
                     grunt.file.write(diffPath, diff.createPatch(to, original, prefixed));
                 }
 
-                function addAnnotation(result, to) {
+                // PostCSS doesn't handle the annotation yet
+                function updateAnnotation(css, to) {
+                    var pattern = /(\/\*(?:#|@)\ssourceMappingURL=\s*)(?:.*)(\s*\*\/)/;
+                    var mapName = path.basename(to) + '.map';
 
-                    // PostCSS doesn't add the annotation yet
-                    result.css = result.css.concat(
-                        grunt.util.linefeed,
-                        '/*# sourceMappingURL=' + path.basename(to) + '.map */'
-                    );
+                    if (pattern.test(css)) {
+                        css = css.replace(pattern, '$1' + mapName + ' $2');
+                    } else {
+                        css = css.concat(
+                            grunt.util.linefeed,
+                            '/*# sourceMappingURL=' + mapName + ' */'
+                        );
+                    }
+
+                    return css;
                 }
 
                 function compile(original, from, to) {
@@ -117,9 +125,9 @@ module.exports = function(grunt) {
                             map.sources = fixSources(JSON.parse(grunt.file.read(mapPath)).sources, to);
                         } else {
                             fixSources(map.sources, to);
-                            addAnnotation(result, to);
                         }
 
+                        result.css = updateAnnotation(result.css, to);
                         grunt.file.write(to + '.map', JSON.stringify(map));
                     } else {
                         result = processor.process(original);

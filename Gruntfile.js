@@ -102,6 +102,13 @@ module.exports = function(grunt) {
                 },
                 src: 'test/fixtures/sm_wo_file.css',
                 dest: 'tmp/sm_wo_file.css'
+            },
+            sm_new_name: {
+                options: {
+                    map: true
+                },
+                src: 'test/fixtures/sm_update.css',
+                dest: 'tmp/sm_new_name.css'
             }
         },
 

@@ -125,4 +125,14 @@ exports.autoprefixer = {
         test.done();
     },
 
+    sm_new_name: function(test) {
+        var actual = grunt.file.read('tmp/sm_new_name.css') +
+                     grunt.file.read('tmp/sm_new_name.css.map');
+        var expected = grunt.file.read('test/expected/sm_new_name.css') +
+                       grunt.file.read('test/expected/sm_new_name.css.map');
+
+        test.strictEqual(actual, expected, 'should update annotation when file name is changed.');
+        test.done();
+    }
+
 };
