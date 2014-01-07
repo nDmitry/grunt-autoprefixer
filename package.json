@@ -31,7 +31,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "autoprefixer": "~1.0.20131222",
+    "autoprefixer": "~1.0.20140103",
     "diff": "~1.0.8"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
     "grunt-contrib-nodeunit": "~0.2.2",
     "grunt-contrib-copy": "~0.5.0",
     "load-grunt-tasks": "~0.2.1",
-    "time-grunt": "~0.2.5"
+    "time-grunt": "~0.2.7"
   },
   "peerDependencies": {
     "grunt": "~0.4.2"
