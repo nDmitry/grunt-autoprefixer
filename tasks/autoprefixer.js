@@ -121,12 +121,7 @@ module.exports = function(grunt) {
 
                         var map = JSON.parse(fixFile(result.map, to));
 
-                        if (grunt.file.exists(mapPath)) {
-                            map.sources = fixSources(JSON.parse(grunt.file.read(mapPath)).sources, to);
-                        } else {
-                            fixSources(map.sources, to);
-                        }
-
+                        fixSources(map.sources, to);
                         result.css = updateAnnotation(result.css, to);
                         grunt.file.write(to + '.map', JSON.stringify(map));
                     } else {
