@@ -1,17 +1,10 @@
-/*
- * grunt-autoprefixer
- *
- * Copyright (c) 2013 Dmitry Nikitenko
- * Licensed under the MIT license.
- */
+'use strict';
+
+var path = require('path');
+var autoprefixer = require('autoprefixer');
+var diff = require('diff');
 
 module.exports = function(grunt) {
-
-    'use strict';
-
-    var path = require('path');
-    var autoprefixer = require('autoprefixer');
-    var diff = require('diff');
 
     grunt.registerMultiTask(
         'autoprefixer',
@@ -44,39 +37,67 @@ module.exports = function(grunt) {
                     }
                 });
 
-                function fixFile(map, filePath) {
+                /**
+                 * Ensure that `file` property in a given map exists
+                 * and it's a filename of a generated content (not a path)
+                 * @param {string} map
+                 * @param {string} filePath
+                 * @returns {string}
+                 */
+                function ensureFile(map, filePath) {
                     map = JSON.parse(map);
                     map.file = path.basename(filePath);
 
                     return JSON.stringify(map);
                 }
 
+                /**
+                 * Set the correct path to a source file
+                 * @param {string[]} sources
+                 * @param {string} to
+                 * @returns {string[]}
+                 */
                 function fixSources(sources, to) {
-                    sources.forEach(function(source, index) {
-
-                        // Set the correct path to a source file
-                        sources[index] = path.relative(path.dirname(to), source);
-                    });
+                    for (var i = 0, ii = sources.length; i < ii; i++) {
+                        sources[i] = path.relative(path.dirname(to), sources[i]);
+                    }
 
                     return sources;
                 }
 
+                /**
+                 * Returns an input source map or `true` if it doesn't exist
+                 * @param {string} mapPath A path to an input source map file
+                 * @param {string} from
+                 * @returns {string|true}
+                 */
                 function getMapParam(mapPath, from) {
 
                     if (grunt.file.exists(mapPath)) {
-                        return fixFile(grunt.file.read(mapPath), from);
+                        return ensureFile(grunt.file.read(mapPath), from);
                     } else {
                         return true;
                     }
                 }
 
-                function writeDiff(to, original, prefixed) {
+                /**
+                 * Create a patch file and write it to the destination folder
+                 * @param {string} to
+                 * @param {string} input Input CSS
+                 * @param {string} output Prefixed CSS
+                 */
+                function writeDiff(to, input, output) {
                     var diffPath = (typeof options.diff === 'string') ? options.diff : to + '.patch';
 
-                    grunt.file.write(diffPath, diff.createPatch(to, original, prefixed));
+                    grunt.file.write(diffPath, diff.createPatch(to, input, output));
                 }
 
-                // PostCSS doesn't handle the annotation yet
+                /**
+                 * PostCSS doesn't handle the annotation yet
+                 * @param {string} css
+                 * @param {string} to
+                 * @returns {string}
+                 */
                 function updateAnnotation(css, to) {
                     var pattern = /(\/\*(?:#|@)\ssourceMappingURL=\s*)(?:.*)(\s*\*\/)/;
                     var mapName = path.basename(to) + '.map';
@@ -93,7 +114,12 @@ module.exports = function(grunt) {
                     return css;
                 }
 
-                function compile(original, from, to) {
+                /**
+                 * @param {string} input Input CSS
+                 * @param {string} from Input path
+                 * @param {string} to Output path
+                 */
+                function compile(input, from, to) {
                     var result;
 
                     if (options.map) {
@@ -113,24 +139,24 @@ module.exports = function(grunt) {
                         to = path.relative(path.dirname(from), to);
                         from = path.basename(from);
 
-                        result = processor.process(original, {
+                        result = processor.process(input, {
                             map: getMapParam(mapPath, from),
                             from: from,
                             to: to
                         });
 
-                        var map = JSON.parse(fixFile(result.map, to));
+                        var map = JSON.parse(ensureFile(result.map, to));
 
                         fixSources(map.sources, to);
                         result.css = updateAnnotation(result.css, to);
                         grunt.file.write(to + '.map', JSON.stringify(map));
                     } else {
-                        result = processor.process(original);
+                        result = processor.process(input);
                     }
 
                     grunt.file.write(to, result.css);
 
-                    options.diff && writeDiff(to, original, result.css);
+                    options.diff && writeDiff(to, input, result.css);
                 }
 
                 sources.forEach(function(filepath) {
