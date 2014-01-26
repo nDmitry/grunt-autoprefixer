@@ -60,6 +60,10 @@ module.exports = function(grunt) {
                 function fixSources(sources, to) {
                     for (var i = 0, ii = sources.length; i < ii; i++) {
                         sources[i] = path.relative(path.dirname(to), sources[i]);
+
+                        if (path.sep === '\\') {
+                            sources[i] = sources[i].replace(/\\/g, '/');
+                        }
                     }
 
                     return sources;
