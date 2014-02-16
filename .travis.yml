@@ -3,6 +3,4 @@ node_js:
   - "0.8"
   - "0.10"
 before_script:
-  - gem update --system
-  - gem install sass --pre
   - npm install -g grunt-cli
