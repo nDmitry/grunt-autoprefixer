@@ -1,7 +1,6 @@
 # grunt-autoprefixer
 [![Build Status](https://travis-ci.org/nDmitry/grunt-autoprefixer.png?branch=master)](https://travis-ci.org/nDmitry/grunt-autoprefixer) 
 [![Dependency Status](https://david-dm.org/nDmitry/grunt-autoprefixer.png)](https://david-dm.org/nDmitry/grunt-autoprefixer)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/nDmitry/grunt-autoprefixer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 > [Autoprefixer](https://github.com/ai/autoprefixer) parses CSS and adds vendor-prefixed CSS properties using the [Can I Use](http://caniuse.com/) database.
@@ -43,7 +42,7 @@ grunt.initConfig({
 
 #### options.browsers
 Type: `Array`
-Default value: `['> 1%', 'last 2 versions', 'ff 17', 'opera 12.1']`
+Default value: `['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']`
 
 You can specify browsers actual for your project:
 
@@ -69,17 +68,26 @@ options: {
 Also you can specify a path where to save this file. More examples in [Gruntfile](https://github.com/nDmitry/grunt-autoprefixer/blob/master/Gruntfile.js).
 
 #### options.map
-Type: `Boolean|String`
-Default value: `false`
+Type: `Boolean|String|undefined`
+Default value: `undefined`
 
-If `true`, the plugin will try to find an input source map file (from a pre-processor) and generate a new map based on the found one (or just generate a new map). If a string is specified, grunt-autoprefixer will look for an input source map at the specified directory.
+If the map option isn't defined, Autoprefixer will look for source map from a previous compilation step (either inline map or separate one) and update it automatically. Let's say you have `path/file.css` and `path/file.css.map` from SASS, Autoprefixer will find that map, update it and save to a specified destination.
 
-```js
-options: {
-  map: true // or 'custom/path/to/maps/'
-}
-```
-You cannot specify a path where to save a map file, it will be saved at the same directory as the output CSS file.
+If `true` is specified, Autoprefixer will try to find an input source map file as described above and generate a new map based on the found one (or just generate a new map, unlike the situation when the map option is undefined).
+
+If you keep your map from a pre-processor in another directory (e.g. `path/file.css` and `another-path/file.css.map`), you can specify the path `another-path/` in the map option to point out where grunt-autoprefixer should look for an input map to update it.
+
+Also you can specify `false`. In that case Autoprefixer will not generate or update source map even if there is one from a previous compilation step near an input file or inlined to it (Autoprefixer will delete a map annotation comment from an input file).
+
+You cannot specify a path where to save a map file, it will be saved at the same directory as the output CSS file or inlined to it (check out the option below).
+
+#### options.mapInline
+Type: `Boolean|undefined`
+Default value: `undefined`
+
+If the option isn't specified, Autoprefixer will inline its map if a map from a previous compilation step was inlined to an input file or save its map as a separate file respectively.
+
+You can specify `true` or `false` to force that behaviour as you like.
 
 ### Usage Examples
 
@@ -134,6 +142,8 @@ grunt.initConfig({
 
 });
 ```
+
+Check out project's [Gruntfile.js](https://github.com/nDmitry/grunt-autoprefixer/blob/master/Gruntfile.js) for more examples.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
