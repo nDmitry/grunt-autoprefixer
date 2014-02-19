@@ -1,6 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,IAAK;EACH,UAAU,EAAE,+BAA2B;;AAGzC,IAAK;EACH,UAAU,EAAE,iCAA2B",
-"sources": ["sm_update_by_path.scss"],
-"file": "sm_update_by_path.css"
-}

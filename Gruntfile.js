@@ -33,11 +33,11 @@ module.exports = function(grunt) {
                 src: 'test/fixtures/gradient.css',
                 dest: 'tmp/no_dest.css'
             },
-            multiple_no_dest: {
+            no_dest_multiple: {
                 expand: true,
                 flatten: true,
                 src: 'test/fixtures/*.css',
-                dest: 'tmp/multiple_no_dest/'
+                dest: 'tmp/no_dest_multiple/'
             }
         },
 
@@ -46,22 +46,26 @@ module.exports = function(grunt) {
                 // We need to `freeze` browsers versions for testing purposes.
                 browsers: ['opera 12', 'ff 15', 'chrome 25']
             },
+
             single_file: {
                 src: 'test/fixtures/gradient.css',
                 dest: 'tmp/single_file.css'
             },
+
             multiple_files: {
                 expand: true,
                 flatten: true,
                 src: 'test/fixtures/*.css',
                 dest: 'tmp/multiple_files/'
             },
-            single_no_dest: {
+
+            no_dest_single: {
                 src: 'tmp/no_dest.css'
             },
-            multiple_no_dest: {
-                src: 'tmp/multiple_no_dest/*.css'
+            no_dest_multiple: {
+                src: 'tmp/no_dest_multiple/*.css'
             },
+
             diff: {
                 options: {
                     diff: true
@@ -76,6 +80,7 @@ module.exports = function(grunt) {
                 src: 'test/fixtures/gradient.css',
                 dest: 'tmp/diff_path.css'
             },
+
             sm: {
                 options: {
                     map: true
@@ -90,26 +95,59 @@ module.exports = function(grunt) {
                 src: 'test/fixtures/sm_update.css',
                 dest: 'tmp/sm_update.css'
             },
+            sm_update_auto: {
+                src: 'test/fixtures/sm_update.css',
+                dest: 'tmp/sm_update_auto.css'
+            },
             sm_update_by_path: {
                 options: {
                     map: 'test/fixtures/'
                 },
-                src: 'test/fixtures/sm_update_by_path.css',
+                src: 'test/fixtures/sm_update.css',
                 dest: 'tmp/sm_update_by_path.css'
             },
-            sm_wo_file: {
+            sm_void: {
                 options: {
-                    map: true
-                },
-                src: 'test/fixtures/sm_wo_file.css',
-                dest: 'tmp/sm_wo_file.css'
-            },
-            sm_new_name: {
-                options: {
-                    map: true
+                    map: false
                 },
                 src: 'test/fixtures/sm_update.css',
-                dest: 'tmp/sm_new_name.css'
+                dest: 'tmp/sm_void.css'
+            },
+
+            sm_inline: {
+                options: {
+                    map: true,
+                    mapInline: true
+                },
+                src: 'test/fixtures/sm.css',
+                dest: 'tmp/sm_inline.css'
+            },
+            sm_inline_update: {
+                options: {
+                    map: true,
+                    mapInline: true
+                },
+                src: 'test/fixtures/sm_inline_update.css',
+                dest: 'tmp/sm_inline_update.css'
+            },
+            sm_inline_update_auto: {
+                src: 'test/fixtures/sm_inline_update.css',
+                dest: 'tmp/sm_inline_update_auto.css'
+            },
+            sm_inline_update_by_path: {
+                options: {
+                    map: 'test/fixtures/',
+                    mapInline: true
+                },
+                src: 'test/fixtures/sm_update.css',
+                dest: 'tmp/sm_inline_update_by_path.css'
+            },
+            sm_inline_void: {
+                options: {
+                    map: false
+                },
+                src: 'test/fixtures/sm_inline_update.css',
+                dest: 'tmp/sm_inline_void.css'
             }
         },
 
