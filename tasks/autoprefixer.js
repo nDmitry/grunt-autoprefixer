@@ -58,12 +58,13 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('autoprefixer', 'Prefix CSS files.', function() {
         options = this.options({
+            cascade: false,
             diff: false,
             map: undefined,
             mapInline: undefined
         });
 
-        prefixer = autoprefixer(options.browsers);
+        prefixer = autoprefixer(options.browsers, {cascade: options.cascade});
 
         this.files.forEach(function(f) {
             f.src

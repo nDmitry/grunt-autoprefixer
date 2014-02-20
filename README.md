@@ -52,7 +52,13 @@ options: {
 }
 ```
 
-[View more](https://github.com/ai/autoprefixer#browsers).
+[Read more](https://github.com/ai/autoprefixer#browsers).
+
+#### options.cascade
+Type: `Boolean`
+Default value: `false`
+
+Pass `true` to enable ‘cascade’ indentation. Read more [here](https://github.com/ai/autoprefixer#visual-cascade).
 
 #### options.diff
 Type: `Boolean|String`
