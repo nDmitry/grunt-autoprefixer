@@ -148,6 +148,10 @@ module.exports = function(grunt) {
                 },
                 src: 'test/fixtures/sm_inline_update.css',
                 dest: 'tmp/sm_inline_void.css'
+            },
+            log: {
+                src: 'tmp/single_file.css',
+                dest: 'tmp/single_file.css'
             }
         },
 

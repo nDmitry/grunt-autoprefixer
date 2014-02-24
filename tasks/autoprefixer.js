@@ -29,18 +29,6 @@ module.exports = function(grunt) {
     }
 
     /**
-     * Create diff and write it to a destination or specified folder
-     * @param {string} to
-     * @param {string} input Input CSS
-     * @param {string} output Prefixed CSS
-     */
-    function writeDiff(to, input, output) {
-        var diffPath = (typeof options.diff === 'string') ? options.diff : to + '.patch';
-
-        grunt.file.write(diffPath, diff.createPatch(to, input, output));
-    }
-
-    /**
      * @param {string} input Input CSS
      * @param {string} from Input path
      * @param {string} to Output path
@@ -84,9 +72,19 @@ module.exports = function(grunt) {
                     var output = prefix(input, filepath, dest);
 
                     grunt.file.write(dest, output.css);
-                    output.map && grunt.file.write(dest + '.map', output.map);
-                    options.diff && writeDiff(dest, input, output.css);
-                    grunt.log.writeln('File ' + chalk.cyan(dest) + ' prefixed.');
+                    grunt.log.writeln('File ' + chalk.cyan(dest) + ' created.');
+
+                    if (output.map) {
+                        grunt.file.write(dest + '.map', output.map);
+                        grunt.log.writeln('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
+                    }
+
+                    if (options.diff) {
+                        var diffPath = (typeof options.diff === 'string') ? options.diff : dest + '.patch';
+
+                        grunt.file.write(diffPath, diff.createPatch(dest, input, output.css));
+                        grunt.log.writeln('File ' + chalk.cyan(diffPath) + ' created (diff).');
+                    }
                 });
         });
     });
