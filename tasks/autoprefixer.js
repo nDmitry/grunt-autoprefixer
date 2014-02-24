@@ -3,6 +3,7 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
 var diff = require('diff');
+var chalk = require('chalk');
 
 module.exports = function(grunt) {
 
@@ -85,7 +86,7 @@ module.exports = function(grunt) {
                     grunt.file.write(dest, output.css);
                     output.map && grunt.file.write(dest + '.map', output.map);
                     options.diff && writeDiff(dest, input, output.css);
-                    grunt.log.writeln('File "' + dest + '" prefixed.');
+                    grunt.log.writeln('File ' + chalk.cyan(dest) + ' prefixed.');
                 });
         });
     });

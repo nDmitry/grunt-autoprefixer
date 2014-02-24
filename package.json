@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "autoprefixer": "~1.1.20140218",
-    "diff": "~1.0.8"
+    "diff": "~1.0.8",
+    "chalk": "~0.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
