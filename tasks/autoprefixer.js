@@ -56,16 +56,11 @@ module.exports = function(grunt) {
         prefixer = autoprefixer(options.browsers, {cascade: options.cascade});
 
         this.files.forEach(function(f) {
-            f.src
-                .filter(function(filepath) {
+            if (!f.src.length) {
+                return grunt.fail.warn('No source files were found.');
+            }
 
-                    if (!grunt.file.exists(filepath)) {
-                        grunt.log.warn('Source file "' + filepath + '" not found.');
-                        return false;
-                    } else {
-                        return true;
-                    }
-                })
+            f.src
                 .forEach(function(filepath) {
                     var dest = f.dest || filepath;
                     var input = grunt.file.read(filepath);
