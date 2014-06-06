@@ -1,0 +1,20 @@
+v0.7.4:
+  date: 2014-06-06
+  changes:
+    - #45: Let users have both grunt-autoprefixer and autoprefixer NPM packages installed.
+v0.7.3:
+  date: 2014-04-27
+  changes:
+    - #42: A warning message if no sources are found.
+v0.7.2:
+  date: 2014-02-24
+  changes:
+    - New colorized terminal output.
+v0.7.1:
+  date: 2014-02-20
+  changes:
+    - #31: `cascade` option support.
+v0.7.0:
+  date: 2014-02-19
+  changes:
+    - #30: Autoprefixer 1.1 support.
