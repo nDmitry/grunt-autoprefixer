@@ -151,5 +151,21 @@ grunt.initConfig({
 
 Check out project's [Gruntfile.js](https://github.com/nDmitry/grunt-autoprefixer/blob/master/Gruntfile.js) for more examples.
 
+### Updating Autoprefixer's database
+
+To get the last prefixes database bundled with autoprefixer package and fixes, reinsnstall grunt-autoprefixer:
+
+```
+$ npm remove grunt-autoprefixer && npm install grunt-autoprefixer
+```
+
+If this option doesn't fit you for some reasons, you can run the in-package update:
+
+```
+$ ./node_modules/grunt-autoprefixer/node_modules/autoprefixer/bin/autoprefixer --update
+```
+
+Read more about in-package updates [here](https://github.com/ai/autoprefixer#in-package-update).
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
