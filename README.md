@@ -153,7 +153,7 @@ Check out project's [Gruntfile.js](https://github.com/nDmitry/grunt-autoprefixer
 
 ### Updating Autoprefixer's database
 
-To get the last prefixes database bundled with autoprefixer package and fixes, reinsnstall grunt-autoprefixer:
+To get the last prefixes database bundled with autoprefixer package and fixes, reinstall grunt-autoprefixer:
 
 ```
 $ npm remove grunt-autoprefixer && npm install grunt-autoprefixer
