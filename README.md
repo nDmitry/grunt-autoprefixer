@@ -56,9 +56,9 @@ options: {
 
 #### options.cascade
 Type: `Boolean`
-Default value: `false`
+Default value: `true`
 
-Pass `true` to enable ‘cascade’ indentation. Read more [here](https://github.com/ai/autoprefixer#visual-cascade).
+Pass `false` to disable ‘cascade’ indentation. Read more [here](https://github.com/ai/autoprefixer#visual-cascade).
 
 #### options.diff
 Type: `Boolean|String`
@@ -74,26 +74,19 @@ options: {
 Also you can specify a path where to save this file. More examples in [Gruntfile](https://github.com/nDmitry/grunt-autoprefixer/blob/master/Gruntfile.js).
 
 #### options.map
-Type: `Boolean|String|undefined`
-Default value: `undefined`
+Type: `Boolean|Object`
+Default value: `false`
 
-If the map option isn't defined, Autoprefixer will look for source map from a previous compilation step (either inline map or separate one) and update it automatically. Let's say you have `path/file.css` and `path/file.css.map` from SASS, Autoprefixer will find that map, update it and save to a specified destination.
+If the `map` option isn't defined or is set to `false`, Autoprefixer will neither create nor update a sourcemap.
 
-If `true` is specified, Autoprefixer will try to find an input source map file as described above and generate a new map based on the found one (or just generate a new map, unlike the situation when the map option is undefined).
+If `true` is specified, Autoprefixer will try to find a sourcemap from a previous compilation step using an annotation comment (e.g. from Sass) and create a new sourcemap based on the found one (or just create a new sourcemap). The creted sourcemap can be either a separate file or an inlined map depending on what the previous sourcemap was.
 
-If you keep your map from a pre-processor in another directory (e.g. `path/file.css` and `another-path/file.css.map`), you can specify the path `another-path/` in the map option to point out where grunt-autoprefixer should look for an input map to update it.
+You can gain more control over sourcemap generation by setting an object to the `map` option:
 
-Also you can specify `false`. In that case Autoprefixer will not generate or update source map even if there is one from a previous compilation step near an input file or inlined to it (Autoprefixer will delete a map annotation comment from an input file).
-
-You cannot specify a path where to save a map file, it will be saved at the same directory as the output CSS file or inlined to it (check out the option below).
-
-#### options.mapInline
-Type: `Boolean|undefined`
-Default value: `undefined`
-
-If the option isn't specified, Autoprefixer will inline its map if a map from a previous compilation step was inlined to an input file or save its map as a separate file respectively.
-
-You can specify `true` or `false` to force that behaviour as you like.
+* `prev` (string or `false`): a path to a directory where a previous sourcemap is (e.g. `path/`). By default, Autoprefixer will try to find a previous sourcemap using a path from the annotation comment (or using the annotation comment itself if the map is inlined). You can also set this option to `false` to delete the previous sourcemap.
+* `inline` (boolean): whether a sourcemap will be inlined or not. By default, it will be the same as a previous sourcemap or a separate file.
+* `annotation` (boolean or string): set this option to `true` or `false` to enable or disable annotation comments. You can also overwrite an output sourcemap path using this option, e.g. `path/file.css.map` (by default, Autoprefixer will save your sourcemap to a directory where you save CSS). This option requires `inline` to be `false` or undefined.
+* `sourceContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only if a previous sourcemap have them.
 
 ### Usage Examples
 
