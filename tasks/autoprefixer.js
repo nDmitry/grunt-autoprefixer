@@ -14,18 +14,16 @@ module.exports = function(grunt) {
      * Returns an input source map if a map path was specified
      * or options.map value otherwise
      * @param {string} from
-     * @returns {string|boolean|undefined}
+     * @returns {string|undefined}
      */
-    function getMapOption(from) {
-        if (typeof options.map === 'string') {
-            var mapPath = options.map + path.basename(from) + '.map';
+    function getPrevMap(from) {
+        if (typeof options.map.prev === 'string') {
+            var mapPath = options.map.prev + path.basename(from) + '.map';
 
             if (grunt.file.exists(mapPath)) {
                 return grunt.file.read(mapPath);
             }
         }
-
-        return options.map;
     }
 
     /**
@@ -36,8 +34,12 @@ module.exports = function(grunt) {
      */
     function prefix(input, from, to) {
         var output = prefixer.process(input, {
-            map: getMapOption(from),
-            inlineMap: options.mapInline,
+            map: (typeof options.map === 'boolean') ? options.map : {
+                prev: getPrevMap(from),
+                inline: options.map.inline,
+                annotation: options.map.annotation,
+                sourcesContent: options.map.sourcesContent
+            },
             from: from,
             to: to
         });
@@ -47,10 +49,9 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('autoprefixer', 'Prefix CSS files.', function() {
         options = this.options({
-            cascade: false,
+            cascade: true,
             diff: false,
-            map: undefined,
-            mapInline: undefined
+            map: false
         });
 
         prefixer = autoprefixer(options.browsers, {cascade: options.cascade});
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
                     grunt.log.writeln('File ' + chalk.cyan(dest) + ' created.');
 
                     if (output.map) {
-                        grunt.file.write(dest + '.map', output.map);
+                        grunt.file.write(dest + '.map', JSON.stringify(output.map.toJSON()));
                         grunt.log.writeln('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
                     }
 

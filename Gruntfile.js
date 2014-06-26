@@ -95,13 +95,11 @@ module.exports = function(grunt) {
                 src: 'test/fixtures/sm_update.css',
                 dest: 'tmp/sm_update.css'
             },
-            sm_update_auto: {
-                src: 'test/fixtures/sm_update.css',
-                dest: 'tmp/sm_update_auto.css'
-            },
             sm_update_by_path: {
                 options: {
-                    map: 'test/fixtures/'
+                    map: {
+                        prev: 'test/fixtures/'
+                    }
                 },
                 src: 'test/fixtures/sm_update.css',
                 dest: 'tmp/sm_update_by_path.css'
@@ -116,28 +114,28 @@ module.exports = function(grunt) {
 
             sm_inline: {
                 options: {
-                    map: true,
-                    mapInline: true
+                    map: {
+                        inline: true
+                    }
                 },
                 src: 'test/fixtures/sm.css',
                 dest: 'tmp/sm_inline.css'
             },
             sm_inline_update: {
                 options: {
-                    map: true,
-                    mapInline: true
+                    map: {
+                        inline: true
+                    }
                 },
                 src: 'test/fixtures/sm_inline_update.css',
                 dest: 'tmp/sm_inline_update.css'
             },
-            sm_inline_update_auto: {
-                src: 'test/fixtures/sm_inline_update.css',
-                dest: 'tmp/sm_inline_update_auto.css'
-            },
             sm_inline_update_by_path: {
                 options: {
-                    map: 'test/fixtures/',
-                    mapInline: true
+                    map: {
+                        prev: 'test/fixtures/',
+                        inline: true
+                    },
                 },
                 src: 'test/fixtures/sm_update.css',
                 dest: 'tmp/sm_inline_update_by_path.css'

@@ -101,16 +101,6 @@ exports.autoprefixer = {
         test.done();
     },
 
-    sm_update_auto: function(test) {
-        var actual = grunt.file.read('tmp/sm_update_auto.css') +
-                     grunt.file.read('tmp/sm_update_auto.css.map');
-        var expected = grunt.file.read('test/expected/sm_update_auto.css') +
-                       grunt.file.read('test/expected/sm_update_auto.css.map');
-
-        test.strictEqual(actual, expected, 'should find previous source map and update it if it exists.');
-        test.done();
-    },
-
     sm_update_by_path: function(test) {
         var actual = grunt.file.read('tmp/sm_update_by_path.css') +
                      grunt.file.read('tmp/sm_update_by_path.css.map');
@@ -143,14 +133,6 @@ exports.autoprefixer = {
         var expected = grunt.file.read('test/expected/sm_inline_update.css');
 
         test.strictEqual(actual, expected, 'should update inlined source map.');
-        test.done();
-    },
-
-    sm_inline_update_auto: function(test) {
-        var actual = grunt.file.read('tmp/sm_inline_update_auto.css');
-        var expected = grunt.file.read('test/expected/sm_inline_update_auto.css');
-
-        test.strictEqual(actual, expected, 'should update inlined source map if map option is undefined.');
         test.done();
     },
 
