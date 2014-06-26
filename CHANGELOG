@@ -1,3 +1,9 @@
+v0.8.0:
+    date: 2014-06-26
+    changes:
+      - Autoprefixer 2.0.
+      - New map option object notation.
+      - Visual cascade is enabled by default.
 v0.7.6:
   date: 2014-06-22
     changes:
