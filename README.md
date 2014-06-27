@@ -79,7 +79,7 @@ Default value: `false`
 
 If the `map` option isn't defined or is set to `false`, Autoprefixer will neither create nor update a sourcemap.
 
-If `true` is specified, Autoprefixer will try to find a sourcemap from a previous compilation step using an annotation comment (e.g. from Sass) and create a new sourcemap based on the found one (or just create a new sourcemap). The creted sourcemap can be either a separate file or an inlined map depending on what the previous sourcemap was.
+If `true` is specified, Autoprefixer will try to find a sourcemap from a previous compilation step using an annotation comment (e.g. from Sass) and create a new sourcemap based on the found one (or just create a new sourcemap). The created sourcemap can be either a separate file or an inlined map depending on what the previous sourcemap was.
 
 You can gain more control over sourcemap generation by setting an object to the `map` option:
 
