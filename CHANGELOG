@@ -1,3 +1,7 @@
+v0.8.1:
+    date: 2014-06-30
+    changes:
+      - Autoprefixer 2.1.
 v0.8.0:
     date: 2014-06-26
     changes:
