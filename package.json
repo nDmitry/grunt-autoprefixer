@@ -16,7 +16,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "autoprefixer": "~2.1.0",
+    "autoprefixer": "^2.1.0",
     "diff": "~1.0.8",
     "chalk": "~0.5.0"
   },
