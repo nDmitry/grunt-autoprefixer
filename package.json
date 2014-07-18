@@ -1,7 +1,7 @@
 {
   "name": "grunt-autoprefixer",
   "description": "Parse CSS and add vendor-prefixed CSS properties using the Can I Use database. Based on Autoprefixer.",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "author": {
     "name": "Dmitry Nikitenko",
     "email": "dima.nikitenko@gmail.com"
