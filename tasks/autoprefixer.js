@@ -71,7 +71,7 @@ module.exports = function(grunt) {
                     grunt.log.writeln('File ' + chalk.cyan(dest) + ' created.');
 
                     if (output.map) {
-                        grunt.file.write(dest + '.map', JSON.stringify(output.map.toJSON()));
+                        grunt.file.write(dest + '.map', output.map.toString());
                         grunt.log.writeln('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
                     }
 
