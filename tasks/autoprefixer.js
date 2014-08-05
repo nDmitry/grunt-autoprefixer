@@ -85,7 +85,7 @@ module.exports = function(grunt) {
                     }
 
                     if (options.diff) {
-                        var diffPath = (typeof options.diff === 'string') ? options.diff : dest + '.patch';
+                        var diffPath = (typeof options.diff === 'string') ? options.diff : dest + '.diff';
 
                         grunt.file.write(diffPath, diff.createPatch(dest, input, output.css));
                         log('File ' + chalk.cyan(diffPath) + ' created (diff).');

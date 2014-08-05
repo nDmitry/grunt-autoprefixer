@@ -75,7 +75,7 @@ module.exports = function(grunt) {
             },
             diff_path: {
                 options: {
-                    diff: 'tmp/diff_path.css.patch'
+                    diff: 'tmp/diff_path.css.diff'
                 },
                 src: 'test/fixtures/gradient.css',
                 dest: 'tmp/diff_path.css'
