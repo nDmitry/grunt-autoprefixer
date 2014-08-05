@@ -60,7 +60,8 @@ module.exports = function(grunt) {
         options = this.options({
             cascade: true,
             diff: false,
-            map: false
+            map: false,
+            silent: false
         });
 
         prefixer = autoprefixer(options.browsers, {cascade: options.cascade});
