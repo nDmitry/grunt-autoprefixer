@@ -78,32 +78,50 @@ exports.autoprefixer = {
     },
 
     sm: function(test) {
-        var actual = grunt.file.read('tmp/sm.css') +
-                     grunt.file.read('tmp/sm.css.map');
-        var expected = grunt.file.read('test/expected/sm.css') +
-                       grunt.file.read('test/expected/sm.css.map');
+        var actual = {
+            css: grunt.file.read('tmp/sm.css'),
+            map: JSON.parse(grunt.file.read('tmp/sm.css.map'))
+        };
 
-        test.strictEqual(actual, expected, 'should generate new source map.');
+        var expected = {
+            css: grunt.file.read('test/expected/sm.css'),
+            map: JSON.parse(grunt.file.read('test/expected/sm.css.map'))
+        };
+
+        test.strictEqual(actual.css, expected.css, 'should add an annotation comment.');
+        test.deepEqual(actual.map, expected.map, 'should generate a new source map.');
         test.done();
     },
 
     sm_update: function(test) {
-        var actual = grunt.file.read('tmp/sm_update.css') +
-                     grunt.file.read('tmp/sm_update.css.map');
-        var expected = grunt.file.read('test/expected/sm_update.css') +
-                       grunt.file.read('test/expected/sm_update.css.map');
+        var actual = {
+            css: grunt.file.read('tmp/sm_update.css'),
+            map: grunt.file.read('tmp/sm_update.css.map')
+        };
 
-        test.strictEqual(actual, expected, 'should find previous source map and update it if it exists.');
+        var expected = {
+            css: grunt.file.read('test/expected/sm_update.css'),
+            map: grunt.file.read('test/expected/sm_update.css.map')
+        };
+
+        test.strictEqual(actual.css, expected.css, 'should leave an annotation comment unchanged.');
+        test.deepEqual(actual.map, expected.map, 'should update an existing source map.');
         test.done();
     },
 
     sm_update_by_path: function(test) {
-        var actual = grunt.file.read('tmp/sm_update_by_path.css') +
-                     grunt.file.read('tmp/sm_update_by_path.css.map');
-        var expected = grunt.file.read('test/expected/sm_update_by_path.css') +
-                       grunt.file.read('test/expected/sm_update_by_path.css.map');
+        var actual = {
+            css: grunt.file.read('tmp/sm_update_by_path.css'),
+            map: grunt.file.read('tmp/sm_update_by_path.css.map')
+        };
 
-        test.strictEqual(actual, expected, 'should take source map at specified path and update it.');
+        var expected = {
+            css: grunt.file.read('test/expected/sm_update_by_path.css'),
+            map: grunt.file.read('test/expected/sm_update_by_path.css.map')
+        };
+
+        test.strictEqual(actual.css, expected.css, 'should leave an annotation comment unchanged.');
+        test.deepEqual(actual.map, expected.map, 'should update an existing source map by path.');
         test.done();
     },
 
@@ -111,7 +129,7 @@ exports.autoprefixer = {
         var actual = grunt.file.read('tmp/sm_void.css');
         var expected = grunt.file.read('test/expected/sm_void.css');
 
-        test.strictEqual(actual, expected, 'shouldn\'t generate a map if map option is `false`.');
+        test.strictEqual(actual, expected, 'shouldn\'t generate a map if the map option is set to `false`.');
         test.ok(grunt.file.exists('tmp/sm_void.css.map') === false);
         test.done();
     },
@@ -120,7 +138,7 @@ exports.autoprefixer = {
         var actual = grunt.file.read('tmp/sm_inline.css');
         var expected = grunt.file.read('test/expected/sm_inline.css');
 
-        test.strictEqual(actual, expected, 'should inline new source map.');
+        test.strictEqual(actual, expected, 'should inline a new source map.');
         test.done();
     },
 
@@ -128,7 +146,7 @@ exports.autoprefixer = {
         var actual = grunt.file.read('tmp/sm_inline_update.css');
         var expected = grunt.file.read('test/expected/sm_inline_update.css');
 
-        test.strictEqual(actual, expected, 'should update inlined source map.');
+        test.strictEqual(actual, expected, 'should update an inlined source map.');
         test.done();
     },
 
@@ -136,7 +154,7 @@ exports.autoprefixer = {
         var actual = grunt.file.read('tmp/sm_inline_update_by_path.css');
         var expected = grunt.file.read('test/expected/sm_inline_update_by_path.css');
 
-        test.strictEqual(actual, expected, 'should take source map at specified path, update and inline it.');
+        test.strictEqual(actual, expected, 'should take source map at a specified path, update and inline it.');
         test.done();
     },
 
