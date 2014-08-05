@@ -1,3 +1,8 @@
+v1.0.0:
+    date: 2014-08-05
+    changes:
+      - New ‘silent’ option to suppress logging to stdout
+      - Diff files now created with .diff extension by default
 v0.8.2:
     date: 2014-07-18
     changes:
