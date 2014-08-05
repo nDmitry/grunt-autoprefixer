@@ -47,6 +47,15 @@ module.exports = function(grunt) {
         return output;
     }
 
+    /**
+     * @param {string} msg log message
+     */
+    function log(msg) {
+        if (!options.silent) {
+            grunt.log.writeln(msg);
+        }
+    }
+
     grunt.registerMultiTask('autoprefixer', 'Prefix CSS files.', function() {
         options = this.options({
             cascade: true,
@@ -68,18 +77,18 @@ module.exports = function(grunt) {
                     var output = prefix(input, filepath, dest);
 
                     grunt.file.write(dest, output.css);
-                    if (!options.silent) grunt.log.writeln('File ' + chalk.cyan(dest) + ' created.');
+                    log('File ' + chalk.cyan(dest) + ' created.');
 
                     if (output.map) {
                         grunt.file.write(dest + '.map', output.map.toString());
-                        if (!options.silent) grunt.log.writeln('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
+                        log('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
                     }
 
                     if (options.diff) {
                         var diffPath = (typeof options.diff === 'string') ? options.diff : dest + '.patch';
 
                         grunt.file.write(diffPath, diff.createPatch(dest, input, output.css));
-                        if (!options.silent) grunt.log.writeln('File ' + chalk.cyan(diffPath) + ' created (diff).');
+                        log('File ' + chalk.cyan(diffPath) + ' created (diff).');
                     }
                 });
         });
