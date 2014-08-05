@@ -11,10 +11,9 @@ module.exports = function(grunt) {
     var prefixer;
 
     /**
-     * Returns an input source map if a map path was specified
-     * or options.map value otherwise
-     * @param {string} from
-     * @returns {string|undefined}
+     * Returns an input map contents if a custom map path was specified
+     * @param {string} from Input CSS path
+     * @returns {?string}
      */
     function getPrevMap(from) {
         if (typeof options.map.prev === 'string') {
@@ -27,10 +26,10 @@ module.exports = function(grunt) {
     }
 
     /**
-     * @param {string} input Input CSS
-     * @param {string} from Input path
-     * @param {string} to Output path
-     * @returns {{css: string, map?: string}}
+     * @param {string} input Input CSS contents
+     * @param {string} from Input CSS path
+     * @param {string} to Output CSS path
+     * @returns {{css: string, map: ?string}}
      */
     function prefix(input, from, to) {
         var output = prefixer.process(input, {
@@ -48,7 +47,7 @@ module.exports = function(grunt) {
     }
 
     /**
-     * @param {string} msg log message
+     * @param {string} msg Log message
      */
     function log(msg) {
         if (!options.silent) {
