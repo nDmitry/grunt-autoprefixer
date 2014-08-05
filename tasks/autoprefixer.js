@@ -32,7 +32,7 @@ module.exports = function(grunt) {
      * @returns {{css: string, map: ?string}}
      */
     function prefix(input, from, to) {
-        var output = prefixer.process(input, {
+        return prefixer.process(input, {
             map: (typeof options.map === 'boolean') ? options.map : {
                 prev: getPrevMap(from),
                 inline: options.map.inline,
@@ -42,8 +42,6 @@ module.exports = function(grunt) {
             from: from,
             to: to
         });
-
-        return output;
     }
 
     /**
