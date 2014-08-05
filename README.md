@@ -88,6 +88,18 @@ You can gain more control over sourcemap generation by setting an object to the 
 * `annotation` (boolean or string): set this option to `true` or `false` to enable or disable annotation comments. You can also overwrite an output sourcemap path using this option, e.g. `path/file.css.map` (by default, Autoprefixer will save your sourcemap to a directory where you save CSS). This option requires `inline` to be `false` or undefined.
 * `sourceContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only if a previous sourcemap have them.
 
+#### options.silent
+Type: `Boolean`
+Default value: `false`
+
+If the `silent` option in enabled, grunt.log.writeln will be suppressed.
+
+```js
+options: {
+  silent: true
+}
+```
+
 ### Usage Examples
 
 ```js
