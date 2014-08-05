@@ -34,6 +34,8 @@
   },
   "keywords": [
     "gruntplugin",
+    "css",
+    "postprocessor",
     "prefix",
     "autoprefixer"
   ]
