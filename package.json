@@ -8,7 +8,6 @@
   },
   "repository": "nDmitry/grunt-autoprefixer",
   "license": "MIT",
-  "main": "Gruntfile.js",
   "engines": {
     "node": ">= 0.10.0"
   },
