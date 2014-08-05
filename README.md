@@ -90,9 +90,9 @@ You can gain more control over sourcemap generation by setting an object to the 
 
 #### options.silent
 Type: `Boolean`
-Default value: false
+Default value: `false`
 
-If the `silent` option in enabled, grunt.log.writeln will be suppress.
+If the `silent` option in enabled, grunt.log.writeln will be suppressed.
 
 ```js
 options: {
