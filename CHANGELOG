@@ -1,4 +1,9 @@
 v1.0.0:
+    data: 2014-08-23
+    changes:
+      - Autoprefixer 3.0.
+      - Use new autoprefixer-core package designed for plugins.
+v1.0.0:
     date: 2014-08-05
     changes:
       - New ‘silent’ option to suppress logging to stdout
