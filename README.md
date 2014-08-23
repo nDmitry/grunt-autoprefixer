@@ -1,9 +1,9 @@
 # grunt-autoprefixer
-[![Build Status](https://travis-ci.org/nDmitry/grunt-autoprefixer.png?branch=master)](https://travis-ci.org/nDmitry/grunt-autoprefixer) 
+[![Build Status](https://travis-ci.org/nDmitry/grunt-autoprefixer.png?branch=master)](https://travis-ci.org/nDmitry/grunt-autoprefixer)
 [![Dependency Status](https://david-dm.org/nDmitry/grunt-autoprefixer.png)](https://david-dm.org/nDmitry/grunt-autoprefixer)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-> [Autoprefixer](https://github.com/ai/autoprefixer) parses CSS and adds vendor-prefixed CSS properties using the [Can I Use](http://caniuse.com/) database.
+> [Autoprefixer](https://github.com/postcss/autoprefixer) parses CSS and adds vendor-prefixed CSS properties using the [Can I Use](http://caniuse.com/) database.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -52,13 +52,13 @@ options: {
 }
 ```
 
-[Read more](https://github.com/ai/autoprefixer#browsers).
+[Read more](https://github.com/postcss/autoprefixer#browsers).
 
 #### options.cascade
 Type: `Boolean`
 Default value: `true`
 
-Pass `false` to disable ‘cascade’ indentation. Read more [here](https://github.com/ai/autoprefixer#visual-cascade).
+Pass `false` to disable ‘cascade’ indentation. Read more [here](https://github.com/postcss/autoprefixer#visual-cascade).
 
 #### options.diff
 Type: `Boolean|String`
