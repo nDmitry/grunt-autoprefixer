@@ -48,7 +48,7 @@ You can specify browsers actual for your project:
 
 ```js
 options: {
-  browsers: ['last 2 version', 'ie 8', 'ie 9']
+  browsers: ['last 2 versions', 'ie 8', 'ie 9']
 }
 ```
 
