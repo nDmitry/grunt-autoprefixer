@@ -1,5 +1,5 @@
-v1.0.0:
-    data: 2014-08-23
+v1.0.1:
+    date: 2014-08-23
     changes:
       - Autoprefixer 3.0.
       - Use new autoprefixer-core package designed for plugins.
