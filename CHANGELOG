@@ -1,5 +1,5 @@
 v2.0.0:
-    date: 2014-08-23
+    date: 2014-11-14
     changes:
       - Autoprefixer 4.0
       - Maps now inline and containing sourcesContent by default
