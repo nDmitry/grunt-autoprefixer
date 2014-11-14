@@ -1,3 +1,9 @@
+v2.0.0:
+    date: 2014-08-23
+    changes:
+      - Autoprefixer 4.0
+      - Maps now inline and containing sourcesContent by default
+      - New `remove` option to control outdated prefixes cleaning (`true` by default)
 v1.0.1:
     date: 2014-08-23
     changes:

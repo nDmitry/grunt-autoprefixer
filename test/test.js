@@ -148,22 +148,5 @@ exports.autoprefixer = {
 
         test.strictEqual(actual, expected, 'should update an inlined source map.');
         test.done();
-    },
-
-    sm_inline_update_by_path: function(test) {
-        var actual = grunt.file.read('tmp/sm_inline_update_by_path.css');
-        var expected = grunt.file.read('test/expected/sm_inline_update_by_path.css');
-
-        test.strictEqual(actual, expected, 'should take source map at a specified path, update and inline it.');
-        test.done();
-    },
-
-    sm_inline_void: function(test) {
-        var actual = grunt.file.read('tmp/sm_inline_void.css');
-        var expected = grunt.file.read('test/expected/sm_inline_void.css');
-
-        test.strictEqual(actual, expected, 'shouldn\'t inline a map if map option is `false`.');
-        test.done();
-    },
-
+    }
 };

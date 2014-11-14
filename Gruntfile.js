@@ -83,7 +83,9 @@ module.exports = function(grunt) {
 
             sm: {
                 options: {
-                    map: true
+                    map: {
+                        inline: false
+                    }
                 },
                 src: 'test/fixtures/sm.css',
                 dest: 'tmp/sm.css'
@@ -98,6 +100,7 @@ module.exports = function(grunt) {
             sm_update_by_path: {
                 options: {
                     map: {
+                        inline: false,
                         prev: 'test/fixtures/'
                     }
                 },
@@ -114,38 +117,17 @@ module.exports = function(grunt) {
 
             sm_inline: {
                 options: {
-                    map: {
-                        inline: true
-                    }
+                    map: true
                 },
                 src: 'test/fixtures/sm.css',
                 dest: 'tmp/sm_inline.css'
             },
             sm_inline_update: {
                 options: {
-                    map: {
-                        inline: true
-                    }
+                    map: true
                 },
                 src: 'test/fixtures/sm_inline_update.css',
                 dest: 'tmp/sm_inline_update.css'
-            },
-            sm_inline_update_by_path: {
-                options: {
-                    map: {
-                        prev: 'test/fixtures/',
-                        inline: true
-                    },
-                },
-                src: 'test/fixtures/sm_update.css',
-                dest: 'tmp/sm_inline_update_by_path.css'
-            },
-            sm_inline_void: {
-                options: {
-                    map: false
-                },
-                src: 'test/fixtures/sm_inline_update.css',
-                dest: 'tmp/sm_inline_void.css'
             },
             log: {
                 src: 'tmp/single_file.css',

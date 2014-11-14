@@ -60,6 +60,12 @@ Default value: `true`
 
 Pass `false` to disable ‘cascade’ indentation. Read more [here](https://github.com/postcss/autoprefixer#visual-cascade).
 
+#### options.remove
+Type: `Boolean`
+Default value: `true`
+
+Pass `false` to disable outdated prefixes cleaning. Read more [here](https://github.com/postcss/autoprefixer/releases/tag/4.0.0).
+
 #### options.diff
 Type: `Boolean|String`
 Default value: `false`
@@ -79,14 +85,14 @@ Default value: `false`
 
 If the `map` option isn't defined or is set to `false`, Autoprefixer will neither create nor update a sourcemap.
 
-If `true` is specified, Autoprefixer will try to find a sourcemap from a previous compilation step using an annotation comment (e.g. from Sass) and create a new sourcemap based on the found one (or just create a new sourcemap). The created sourcemap can be either a separate file or an inlined map depending on what the previous sourcemap was.
+If `true` is specified, Autoprefixer will try to find a sourcemap from a previous compilation step using an annotation comment (e.g. from Sass) and create a new sourcemap based on the found one (or just create a new inlined sourcemap). The created sourcemap can be either a separate file or an inlined map depending on what the previous sourcemap was.
 
 You can gain more control over sourcemap generation by setting an object to the `map` option:
 
 * `prev` (string or `false`): a path to a directory where a previous sourcemap is (e.g. `path/`). By default, Autoprefixer will try to find a previous sourcemap using a path from the annotation comment (or using the annotation comment itself if the map is inlined). You can also set this option to `false` to delete the previous sourcemap.
-* `inline` (boolean): whether a sourcemap will be inlined or not. By default, it will be the same as a previous sourcemap or a separate file.
+* `inline` (boolean): whether a sourcemap will be inlined or not. By default, it will be the same as a previous sourcemap or inlined.
 * `annotation` (boolean or string): set this option to `true` or `false` to enable or disable annotation comments. You can also overwrite an output sourcemap path using this option, e.g. `path/file.css.map` (by default, Autoprefixer will save your sourcemap to a directory where you save CSS). This option requires `inline` to be `false` or undefined.
-* `sourceContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only if a previous sourcemap have them.
+* `sourceContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only for new sourcemaps or if a previous sourcemap has them.
 
 #### options.silent
 Type: `Boolean`
@@ -145,6 +151,16 @@ grunt.initConfig({
     sourcemap: {
         options: {
             map: true
+        },
+        src: 'src/css/file.css',
+        dest: 'dest/css/file.css' // -> dest/css/file.css, sourcemap is inlined
+    },
+
+    sourcemap_separate: {
+        options: {
+            map: {
+                inline: false
+            }
         },
         src: 'src/css/file.css',
         dest: 'dest/css/file.css' // -> dest/css/file.css, dest/css/file.css.map

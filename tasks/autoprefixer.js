@@ -35,9 +35,9 @@ module.exports = function(grunt) {
         return prefixer.process(input, {
             map: (typeof options.map === 'boolean') ? options.map : {
                 prev: getPrevMap(from),
-                inline: options.map.inline,
-                annotation: options.map.annotation,
-                sourcesContent: options.map.sourcesContent
+                inline: (typeof options.map.inline === 'boolean') ? options.map.inline : true,
+                annotation: (typeof options.map.annotation === 'boolean') ? options.map.annotation : true,
+                sourcesContent: (typeof options.map.sourcesContent === 'boolean') ? options.map.sourcesContent : true
             },
             from: from,
             to: to
@@ -58,10 +58,11 @@ module.exports = function(grunt) {
             cascade: true,
             diff: false,
             map: false,
-            silent: false
+            silent: false,
+            remove: true
         });
 
-        prefixer = autoprefixer({browsers: options.browsers, cascade: options.cascade});
+        prefixer = autoprefixer({browsers: options.browsers, cascade: options.cascade, remove: options.remove});
 
         this.files.forEach(function(f) {
             if (!f.src.length) {
