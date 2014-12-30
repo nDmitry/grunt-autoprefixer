@@ -106,6 +106,18 @@ options: {
 }
 ```
 
+#### options.safw
+Type: `Boolean`
+Default value: `false`
+
+Enable or disable (https://github.com/postcss/postcss#safe-mode)[PostCSS safe mode].
+
+```js
+options: {
+  safe: true
+}
+```
+
 ### Usage Examples
 
 ```js
