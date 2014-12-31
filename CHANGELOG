@@ -1,3 +1,7 @@
+v2.1.0:
+    date: 2014-12-31
+    changes:
+      - New `safe` option
 v2.0.0:
     date: 2014-11-14
     changes:
