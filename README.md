@@ -42,9 +42,9 @@ grunt.initConfig({
 
 #### options.browsers
 Type: `Array`
-Default value: `['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']`
+Default value: an array with [default browsers](https://github.com/ai/browserslist)
 
-You can specify browsers actual for your project:
+You can specify browsers actual for your project using this option:
 
 ```js
 options: {
@@ -52,7 +52,16 @@ options: {
 }
 ```
 
-[Read more](https://github.com/postcss/autoprefixer#browsers).
+Or using a global config file named `browserslist` at the root of your project:
+
+```
+# Browsers that we support
+
+> 5% in US
+Last 2 versions
+```
+
+Read more about browserslist [here](https://github.com/ai/browserslist).
 
 #### options.cascade
 Type: `Boolean`
