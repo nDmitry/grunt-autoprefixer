@@ -92,7 +92,7 @@ You can gain more control over sourcemap generation by setting an object to the 
 * `prev` (string or `false`): a path to a directory where a previous sourcemap is (e.g. `path/`). By default, Autoprefixer will try to find a previous sourcemap using a path from the annotation comment (or using the annotation comment itself if the map is inlined). You can also set this option to `false` to delete the previous sourcemap.
 * `inline` (boolean): whether a sourcemap will be inlined or not. By default, it will be the same as a previous sourcemap or inlined.
 * `annotation` (boolean or string): set this option to `true` or `false` to enable or disable annotation comments. You can also overwrite an output sourcemap path using this option, e.g. `path/file.css.map` (by default, Autoprefixer will save your sourcemap to a directory where you save CSS). This option requires `inline` to be `false` or undefined.
-* `sourceContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only for new sourcemaps or if a previous sourcemap has them.
+* `sourcesContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only for new sourcemaps or if a previous sourcemap has them.
 
 #### options.silent
 Type: `Boolean`
