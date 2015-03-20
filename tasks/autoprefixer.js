@@ -9,6 +9,11 @@ module.exports = function(grunt) {
 
     var options;
     var prefixer;
+    var tally = {
+        sheets: 0,
+        maps: 0,
+        diffs: 0
+    };
 
     /**
      * Returns an input map contents if a custom map path was specified
@@ -49,9 +54,7 @@ module.exports = function(grunt) {
      * @param {string} msg Log message
      */
     function log(msg) {
-        if (!options.silent) {
-            grunt.log.writeln(msg);
-        }
+        grunt.verbose.writeln(msg);
     }
 
     grunt.registerMultiTask('autoprefixer', 'Prefix CSS files.', function() {
@@ -80,10 +83,12 @@ module.exports = function(grunt) {
 
                     grunt.file.write(dest, output.css);
                     log('File ' + chalk.cyan(dest) + ' created.');
+                    tally.sheets++;
 
                     if (output.map) {
                         grunt.file.write(dest + '.map', output.map.toString());
                         log('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
+                        tally.maps++;
                     }
 
                     if (options.diff) {
@@ -91,8 +96,21 @@ module.exports = function(grunt) {
 
                         grunt.file.write(diffPath, diff.createPatch(dest, input, output.css));
                         log('File ' + chalk.cyan(diffPath) + ' created (diff).');
+                        tally.diffs++;
                     }
                 });
         });
+
+        if (tally.sheets) {
+            grunt.log.ok(tally.sheets + ' ' + 'autoprefixed ' + grunt.util.pluralize(tally.sheets, 'stylesheet/stylesheets') + ' created.');
+        }
+
+        if (tally.maps) {
+            grunt.log.ok(tally.maps + ' ' + grunt.util.pluralize(tally.maps, 'sourcemap/sourcemaps') + ' created.');
+        }
+
+        if (tally.diffs) {
+            grunt.log.ok(tally.diffs + ' ' + grunt.util.pluralize(tally.diffs, 'diff/diffs') + ' created.');
+        }
     });
 };
