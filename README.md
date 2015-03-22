@@ -148,12 +148,12 @@ grunt.initConfig({
     },
 
     // prefix all files
-    multiple_files: {
+    multiple_files: [{
       expand: true,
       flatten: true,
       src: 'src/css/*.css', // -> src/css/file1.css, src/css/file2.css
       dest: 'dest/css/' // -> dest/css/file1.css, dest/css/file2.css
-    },
+    }],
 
     // if you have specified only the `src` param, the destination will be set automatically,
     // so source files will be overwritten
