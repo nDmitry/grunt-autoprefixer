@@ -129,6 +129,16 @@ module.exports = function(grunt) {
                 src: 'test/fixtures/sm_inline_update.css',
                 dest: 'tmp/sm_inline_update.css'
             },
+            sm_annotation_path: {
+                options: {
+                    map: {
+                        inline: false,
+                        annotation: 'sm_updated_annotation.css.map'
+                    }
+                },
+                src: 'test/fixtures/sm_annotation_path.css',
+                dest: 'tmp/sm_annotation_path.css'
+            },
             log: {
                 src: 'tmp/single_file.css',
                 dest: 'tmp/single_file.css'
