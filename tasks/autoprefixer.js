@@ -72,8 +72,8 @@ module.exports = function(grunt) {
                 return grunt.fail.warn('No source files were found.');
             }
 
-            f.src
-                .forEach(function(filepath) {
+            try {
+                f.src.forEach(function(filepath) {
                     var dest = f.dest || filepath;
                     var input = grunt.file.read(filepath);
                     var output = prefix(input, filepath, dest);
@@ -93,6 +93,9 @@ module.exports = function(grunt) {
                         log('File ' + chalk.cyan(diffPath) + ' created (diff).');
                     }
                 });
+            } catch (e) {
+                grunt.fail.fatal(e);
+            }
         });
     });
 };
