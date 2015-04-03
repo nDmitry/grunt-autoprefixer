@@ -103,18 +103,6 @@ You can gain more control over sourcemap generation by setting an object to the 
 * `annotation` (string): set this option to URL path you wish the annotation comment to be e.g. `path/file.css.map` (by default, Autoprefixer will save your sourcemap to a directory where you save CSS). This option requires `inline` to be `false` or undefined.
 * `sourcesContent` (boolean): whether original contents (e.g. Sass sources) will be included to a sourcemap. By default, Autoprefixer will add contents only for new sourcemaps or if a previous sourcemap has them.
 
-#### options.silent
-Type: `Boolean`
-Default value: `false`
-
-If the `silent` option is enabled, logging to the stdout will be suppressed.
-
-```js
-options: {
-  silent: true
-}
-```
-
 #### options.safe
 Type: `Boolean`
 Default value: `false`

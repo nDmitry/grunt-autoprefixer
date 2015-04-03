@@ -58,7 +58,6 @@ module.exports = function(grunt) {
             cascade: true,
             diff: false,
             map: false,
-            silent: false,
             remove: true,
             safe: false
         });
