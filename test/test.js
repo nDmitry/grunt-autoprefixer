@@ -148,5 +148,13 @@ exports.autoprefixer = {
 
         test.strictEqual(actual, expected, 'should update an inlined source map.');
         test.done();
+    },
+
+    sm_annotation_path: function(test) {
+        var actual = grunt.file.read('tmp/sm_annotation_path.css');
+        var expected = grunt.file.read('test/expected/sm_annotation_path.css');
+
+        test.strictEqual(actual, expected, 'should update sourcemap annotation.');
+        test.done();
     }
 };
