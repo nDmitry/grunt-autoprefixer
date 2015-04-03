@@ -9,11 +9,6 @@ module.exports = function(grunt) {
 
     var options;
     var prefixer;
-    var tally = {
-        sheets: 0,
-        maps: 0,
-        diffs: 0
-    };
 
     /**
      * Returns an input map contents if a custom map path was specified
@@ -67,6 +62,12 @@ module.exports = function(grunt) {
             remove: true,
             safe: false
         });
+
+        var tally = {
+            sheets: 0,
+            maps: 0,
+            diffs: 0
+        };
 
         prefixer = autoprefixer({browsers: options.browsers, cascade: options.cascade, remove: options.remove});
 
