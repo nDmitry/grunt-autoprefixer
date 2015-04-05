@@ -1,5 +1,5 @@
 v3.0.0:
-    date: 2015-01-17
+    date: 2015-04-03
     changes:
       - Abort Grunt on exceptions caught from external modules. Fix #92 and #93
       - Sourcemap `annotation` option now accepts string paths (#105)
