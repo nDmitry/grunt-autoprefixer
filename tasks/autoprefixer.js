@@ -75,23 +75,30 @@ module.exports = function(grunt) {
             remove: options.remove
         })]);
 
+        var done = this.async();
+        var finished = 0;
+        var processed = this.files.length;
+
         this.files.forEach(function(f) {
             if (!f.src.length) {
                 return grunt.fail.warn('No source files were found.');
             }
 
-            try {
-                f.src.forEach(function(filepath) {
-                    var dest = f.dest || filepath;
-                    var input = grunt.file.read(filepath);
-                    var output = prefix(input, filepath, dest);
+            f.src.forEach(function(filepath) {
+                var dest = f.dest || filepath;
+                var input = grunt.file.read(filepath);
 
-                    grunt.file.write(dest, output.css);
+                prefix(input, filepath, dest).then(function(result) {
+                    result.warnings().forEach(function (msg) {
+                        grunt.log.error(msg.toString());
+                    });
+
+                    grunt.file.write(dest, result.css);
                     log('File ' + chalk.cyan(dest) + ' created.');
                     tally.sheets++;
 
-                    if (output.map) {
-                        grunt.file.write(dest + '.map', output.map.toString());
+                    if (result.map) {
+                        grunt.file.write(dest + '.map', result.map.toString());
                         log('File ' + chalk.cyan(dest + '.map') + ' created (source map).');
                         tally.maps++;
                     }
@@ -99,14 +106,24 @@ module.exports = function(grunt) {
                     if (options.diff) {
                         var diffPath = (typeof options.diff === 'string') ? options.diff : dest + '.diff';
 
-                        grunt.file.write(diffPath, diff.createPatch(dest, input, output.css));
+                        grunt.file.write(diffPath, diff.createPatch(dest, input, result.css));
                         log('File ' + chalk.cyan(diffPath) + ' created (diff).');
                         tally.diffs++;
                     }
+
+                    finished += 1;
+
+                    if (finished === processed) {
+                        done();
+                    }
+                }).catch(function (error) {
+                    if (error.name === 'CssSyntaxError') {
+                        grunt.fatal(error.message + error.showSourceCode());
+                    } else {
+                        grunt.fatal(error);
+                    }
                 });
-            } catch (e) {
-                grunt.fail.fatal(e);
-            }
+            });
         });
 
         if (tally.sheets) {
