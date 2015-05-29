@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path');
+var postcss = require('postcss');
 var autoprefixer = require('autoprefixer-core');
 var diff = require('diff');
 var chalk = require('chalk');
@@ -68,7 +69,11 @@ module.exports = function(grunt) {
             diffs: 0
         };
 
-        prefixer = autoprefixer({browsers: options.browsers, cascade: options.cascade, remove: options.remove});
+        prefixer = postcss([autoprefixer({
+            browsers: options.browsers,
+            cascade: options.cascade,
+            remove: options.remove
+        })]);
 
         this.files.forEach(function(f) {
             if (!f.src.length) {

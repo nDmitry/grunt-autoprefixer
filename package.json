@@ -1,6 +1,6 @@
 {
   "name": "grunt-autoprefixer",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Parse CSS and add vendor-prefixed CSS properties using the Can I Use database. Based on Autoprefixer.",
   "author": {
     "name": "Dmitry Nikitenko",
@@ -27,8 +27,9 @@
   ],
   "dependencies": {
     "autoprefixer-core": "^5.1.7",
+    "chalk": "~1.0.0",
     "diff": "~1.3.0",
-    "chalk": "~1.0.0"
+    "postcss": "^4.1.11"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

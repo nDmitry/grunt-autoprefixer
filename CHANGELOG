@@ -1,3 +1,7 @@
+v3.0.1:
+    date: 2015-05-29
+    changes:
+      - Autoprefixer 5.2 support
 v3.0.0:
     date: 2015-04-03
     changes:
