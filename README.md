@@ -1,3 +1,7 @@
+# Deprecation notice
+
+### This project has been deprecated in favour of [grunt-postcss](https://github.com/nDmitry/grunt-postcss).
+
 # grunt-autoprefixer
 [![Build Status](https://travis-ci.org/nDmitry/grunt-autoprefixer.png?branch=master)](https://travis-ci.org/nDmitry/grunt-autoprefixer)
 [![Dependency Status](https://david-dm.org/nDmitry/grunt-autoprefixer.png)](https://david-dm.org/nDmitry/grunt-autoprefixer)
@@ -113,70 +117,6 @@ Enable or disable [PostCSS safe mode](https://github.com/postcss/postcss#safe-mo
 options: {
   safe: true
 }
-```
-
-### Usage Examples
-
-```js
-grunt.initConfig({
-
-  autoprefixer: {
-
-    options: {
-      // Task-specific options go here.
-    },
-
-    // prefix the specified file
-    single_file: {
-      options: {
-        // Target-specific options go here.
-      },
-      src: 'src/css/file.css',
-      dest: 'dest/css/file.css'
-    },
-
-    // prefix all files
-    multiple_files: [{
-      expand: true,
-      flatten: true,
-      src: 'src/css/*.css', // -> src/css/file1.css, src/css/file2.css
-      dest: 'dest/css/' // -> dest/css/file1.css, dest/css/file2.css
-    }],
-
-    // if you have specified only the `src` param, the destination will be set automatically,
-    // so source files will be overwritten
-    no_dest: {
-      src: 'dest/css/file.css' // globbing is also possible here
-    },
-
-    diff: {
-        options: {
-            diff: true
-        },
-        src: 'src/css/file.css',
-        dest: 'dest/css/file.css' // -> dest/css/file.css, dest/css/file.css.patch
-    },
-
-    sourcemap: {
-        options: {
-            map: true
-        },
-        src: 'src/css/file.css',
-        dest: 'dest/css/file.css' // -> dest/css/file.css, sourcemap is inlined
-    },
-
-    sourcemap_separate: {
-        options: {
-            map: {
-                inline: false
-            }
-        },
-        src: 'src/css/file.css',
-        dest: 'dest/css/file.css' // -> dest/css/file.css, dest/css/file.css.map
-    },
-  }
-
-});
 ```
 
 Check out project's [Gruntfile.js](https://github.com/nDmitry/grunt-autoprefixer/blob/master/Gruntfile.js) for more examples.
