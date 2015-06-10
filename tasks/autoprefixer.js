@@ -80,11 +80,23 @@ module.exports = function(grunt) {
         var processed = this.files.length;
 
         this.files.forEach(function(f) {
-            if (!f.src.length) {
-                return grunt.fail.warn('No source files were found.');
+            var src = f.src.filter(function(filepath) {
+                if (!grunt.file.exists(filepath)) {
+                    grunt.log.warn('Source file ' + chalk.cyan(filepath) + ' not found.');
+
+                    return false;
+                }
+
+                return true;
+            });
+
+            if (src.length === 0) {
+                grunt.log.error('No source files were found.');
+
+                return done();
             }
 
-            f.src.forEach(function(filepath) {
+            src.forEach(function(filepath) {
                 var dest = f.dest || filepath;
                 var input = grunt.file.read(filepath);
 
