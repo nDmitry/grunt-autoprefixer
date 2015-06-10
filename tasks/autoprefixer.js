@@ -79,6 +79,10 @@ module.exports = function(grunt) {
         var finished = 0;
         var processed = this.files.length;
 
+        if (!this.files.length) {
+            done();
+        }
+
         this.files.forEach(function(f) {
             var src = f.src.filter(function(filepath) {
                 if (!grunt.file.exists(filepath)) {
