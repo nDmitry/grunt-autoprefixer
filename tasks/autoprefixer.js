@@ -126,6 +126,18 @@ module.exports = function(grunt) {
                     finished += 1;
 
                     if (finished === processed) {
+                        if (tally.sheets) {
+                            grunt.log.ok(tally.sheets + ' ' + 'autoprefixed ' + grunt.util.pluralize(tally.sheets, 'stylesheet/stylesheets') + ' created.');
+                        }
+
+                        if (tally.maps) {
+                            grunt.log.ok(tally.maps + ' ' + grunt.util.pluralize(tally.maps, 'sourcemap/sourcemaps') + ' created.');
+                        }
+
+                        if (tally.diffs) {
+                            grunt.log.ok(tally.diffs + ' ' + grunt.util.pluralize(tally.diffs, 'diff/diffs') + ' created.');
+                        }
+
                         done();
                     }
                 }).catch(function (error) {
@@ -137,17 +149,5 @@ module.exports = function(grunt) {
                 });
             });
         });
-
-        if (tally.sheets) {
-            grunt.log.ok(tally.sheets + ' ' + 'autoprefixed ' + grunt.util.pluralize(tally.sheets, 'stylesheet/stylesheets') + ' created.');
-        }
-
-        if (tally.maps) {
-            grunt.log.ok(tally.maps + ' ' + grunt.util.pluralize(tally.maps, 'sourcemap/sourcemaps') + ' created.');
-        }
-
-        if (tally.diffs) {
-            grunt.log.ok(tally.diffs + ' ' + grunt.util.pluralize(tally.diffs, 'diff/diffs') + ' created.');
-        }
     });
 };
