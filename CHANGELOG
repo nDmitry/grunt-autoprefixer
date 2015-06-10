@@ -1,4 +1,4 @@
-v3.0.2:
+v3.0.3:
     date: 2015-06-10
     changes:
       - Fixed some async bugs
